@@ -1,0 +1,17 @@
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.BAL.deps.json
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.BAL.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.BAL.pdb
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.DAL.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.DAL.pdb
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.csproj.AssemblyReference.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.AssemblyInfoInputs.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.AssemblyInfo.cs
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.csproj.CoreCompileInputs.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.csproj.CopyComplete
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\refint\HL.BAL.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.pdb
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\ref\HL.BAL.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\bin\Debug\net6.0\HL.BAL.runtimeconfig.json
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.BAL\obj\Debug\net6.0\HL.BAL.genruntimeconfig.cache
