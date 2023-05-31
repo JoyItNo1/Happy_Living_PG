@@ -2,19 +2,14 @@
 using HL.DAL.Data;
 using HL.DAL.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net.Mail;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 
@@ -61,7 +56,6 @@ namespace HL.BAL.Implementation
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
             reg.HashPassword = passwordHash;
             reg.ComPassword = registerUser.ComPassword;
-            reg.OTP ="";
             var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == registerUser.Usertype);
             if (Role.Usertype.ToLower() == "pgadmin")
             {
@@ -146,49 +140,79 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("Please enter data...!");
             }
-
-            var details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == Email || i.PhoneNumber == phonenumber);
-            details.OTP = "";
-            _dataContextClass.SaveChanges();
-
+            OTPClass reg = new OTPClass();
             Random random = new Random();
 
             string otp = (random.Next(1000, 9999)).ToString();
-           
-                if (details == null)
+            var details = _dataContextClass.OTPClass.FirstOrDefault(h => h.Email == Email || h.PhoneNumber==phonenumber);
+            //if (details != null)
+            //{
+            //    return BadRequest("Mail Or Phone Number already Exists..!");
+            //}
+
+            if (Email == null && phonenumber != null)
+            {
+                string pattern = @"^\d{10}$";
+                if (!Regex.IsMatch(phonenumber, pattern))
                 {
-                    return BadRequest("Please provid valied Mail Or Phone Number");
+                    return BadRequest("Invalied Phone number");
                 }
-                if (Email == null && phonenumber != null)
+                // Your Account SID and Auth Token from twilio.com/console
+                string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
+                string authToken = "c94e935541ed3f3b83f3712e1a48852e";
+
+                // Initialize the Twilio client
+                TwilioClient.Init(accountSid, authToken);
+
+                // Send an SMS message
+                var message1 = MessageResource.Create(
+                    body: $"Your otp is:{otp} Do not shere with any one...!",
+                    from: new Twilio.Types.PhoneNumber("+12707173050"), // Twilio phone number
+                    to: new Twilio.Types.PhoneNumber("+916363112696") // recipient's phone number
+                );
+                if (details.PhoneNumber != null)
                 {
-                    // Your Account SID and Auth Token from twilio.com/console
-                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
-                    string authToken = "c94e935541ed3f3b83f3712e1a48852e";
-
-                    // Initialize the Twilio client
-                    TwilioClient.Init(accountSid, authToken);
-
-                    // Send an SMS message
-                    var message1 = MessageResource.Create(
-                        body: $"Your otp is:{otp} Do not shere with any one...!",
-                        from: new Twilio.Types.PhoneNumber("+12707173050"), // Twilio phone number
-                        to: new Twilio.Types.PhoneNumber("+916363112696") // recipient's phone number
-                    );
+                    details.PhoneNumber = phonenumber;
                     details.OTP = otp;
                     _dataContextClass.SaveChanges();
-                    return Ok($"OTP generated and sent to Phone Number: '{phonenumber}'");
                 }
+                else
+                {
+                    reg.PhoneNumber = phonenumber;
+                    reg.OTP = otp;
+                    _dataContextClass.OTPClass.Add(reg);
+                    _dataContextClass.SaveChanges();
+                }
+                return Ok($"OTP generated and sent to Phone Number: '{phonenumber}'");
+            }
+            string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(Email, email))
+            {
+                return BadRequest("Invalied Email");
+            }
+            if (details.Email != null)
+            {
+                details.Email = Email;
                 details.OTP = otp;
                 _dataContextClass.SaveChanges();
+            }
+            else
+            {
+                reg.Email = Email;
+                reg.PhoneNumber = phonenumber;
+                reg.OTP = otp;
+                _dataContextClass.OTPClass.Add(reg);
+                _dataContextClass.SaveChanges();
+            }
 
                 // Send the OTP to the user via email 
-                var fullname = details.Name;
+                var fullname = "Your Mail Successfully Verified...!";
                 string fromAddress = "Joyitsolutions1@gmail.com";
-                string Password = "rpcfydphzeoafsig";
-                string toAddress = details.Email;
-                string emailHeader = "<html><body><h1>OTP to Reset Password</h1></body></html>";
+                string Password = "rbmxrfjnujzssmyf";
+                string toAddress = Email;
+                string emailHeader = "<html><body><h1>OTP to  verify</h1></body></html>";
                 string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your otp with anyone..!<br>  </p></body></html>";
-                string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your one time password(otp) is: <h3>{details.OTP}</h3></p></body></html>";
+                string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your one time password(otp) is: <h3>{otp}</h3></p></body></html>";
                 string emailContent = emailHeader + emailBody + emailFooter;
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(fromAddress);
@@ -204,16 +228,16 @@ namespace HL.BAL.Implementation
                     EnableSsl = true,
                 };
                 smtpClient.Send(message);
-                return Ok($"OTP generated and sent to MailID: '{details.Email}'");
+                return Ok($"OTP generated and sent to MailID: '{Email}'");
         }
         public IActionResult VerifyOTP(string? email, string? PhoneNumber, string? otp)
         {
-            var details = _dataContextClass.RegisterTable.FirstOrDefault(x => x.Email == email || x.PhoneNumber==PhoneNumber && x.OTP == otp);
-            if(details == null)
+            var data=_dataContextClass.OTPClass.FirstOrDefault(x=> x.Email == email || x.PhoneNumber == PhoneNumber && x.OTP == otp);
+            if(data==null)
             {
                 return NotFound();
             }
-            details.OTP = ""; 
+            data.OTP = ""; 
             _dataContextClass.SaveChanges();
             return Ok("Date varified...!");
         }

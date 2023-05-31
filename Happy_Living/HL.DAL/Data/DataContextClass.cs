@@ -15,5 +15,7 @@ namespace HL.DAL.Data
         }
         public DbSet<RegisterClass> RegisterTable { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+
+        public DbSet<OTPClass> OTPClass { get; set; }   
     }
 }

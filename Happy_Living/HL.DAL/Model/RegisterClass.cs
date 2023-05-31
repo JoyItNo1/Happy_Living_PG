@@ -21,6 +21,5 @@ namespace HL.DAL.Model
         public string? ComPassword { get; set; }
         public string? HashPassword { get; set; }    
         public int role_Id { get; set; } 
-        public string OTP { get; set;}
     }
 }
