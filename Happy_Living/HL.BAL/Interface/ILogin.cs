@@ -15,5 +15,7 @@ namespace HL.BAL.Interface
         IActionResult validation(string? Email, string? phonenumber);
         public IActionResult Add_UserType(UserType userType);
         IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
+        public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG);
+
     }
 }

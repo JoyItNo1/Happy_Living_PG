@@ -13,7 +13,7 @@ namespace Happy_Living.Controllers
     {
         private readonly ILogin _login;
 
-        public UserLoginController( ILogin login)
+        public UserLoginController(ILogin login)
         {
             _login = login;
         }
@@ -27,7 +27,7 @@ namespace Happy_Living.Controllers
         [Route("LogIn")]
         public IActionResult LogIn(string? Email, string? PhoneNumber, string? Password)
         {
-            return _login.LogIn(Email,PhoneNumber,Password);
+            return _login.LogIn(Email, PhoneNumber, Password);
         }
         [HttpPost]
         [Route("validation")]
@@ -55,6 +55,11 @@ namespace Happy_Living.Controllers
         {
             return _login.Add_UserType(userType);
         }
-
+        [HttpPost]
+        [Route("PGAdminRegistration")]
+        public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG)
+        {
+            return _login.PGAdminRegistration(AdminRegisterPG);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace HL.BAL.Implementation
             _dataContextClass = dataContextClass;
             _configuration = configuration;
         }
+        //user register
         public  IActionResult Register(RegisterUser registerUser)
         { 
             if(registerUser ==null)
@@ -57,7 +58,7 @@ namespace HL.BAL.Implementation
             reg.HashPassword = passwordHash;
             reg.ComPassword = registerUser.ComPassword;
             var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == registerUser.Usertype);
-            if (Role.Usertype.ToLower() == "pgadmin")
+            if (Role.Usertype.ToLower() == "User")
             {
                 reg.role_Id = 1;
             }
@@ -69,6 +70,7 @@ namespace HL.BAL.Implementation
              _dataContextClass.SaveChanges();
             return Ok("User Registered..!");
         }
+        //user Login
         public IActionResult LogIn(string? Email,string?  PhoneNumber ,string? Password)
         {
             if (Email == null && PhoneNumber == null)
@@ -120,7 +122,7 @@ namespace HL.BAL.Implementation
                 Role_Id = y.role_Id,
             });
         }
-
+        //Add User type like user and Pg Admin
         public IActionResult Add_UserType(UserType userType)
         {
             var data = _dataContextClass.UserTypes.FirstOrDefault(i => i.Usertype == userType.Usertype);
@@ -134,21 +136,24 @@ namespace HL.BAL.Implementation
             _dataContextClass.SaveChanges();
             return Ok("User Type Added..!");
         }
+        //Verify Email and Number
         public IActionResult validation(string? Email, string? phonenumber)
         {
             if (Email == null && phonenumber == null)
             {
                 return BadRequest("Please enter data...!");
             }
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == Email && i.PhoneNumber == phonenumber);
+            if (data != null)
+            {
+                return BadRequest("User Already Exists..!");
+            }
             OTPClass reg = new OTPClass();
             Random random = new Random();
 
             string otp = (random.Next(1000, 9999)).ToString();
             var details = _dataContextClass.OTPClass.FirstOrDefault(h => h.Email == Email || h.PhoneNumber==phonenumber);
-            //if (details != null)
-            //{
-            //    return BadRequest("Mail Or Phone Number already Exists..!");
-            //}
+           
 
             if (Email == null && phonenumber != null)
             {
@@ -241,5 +246,81 @@ namespace HL.BAL.Implementation
             _dataContextClass.SaveChanges();
             return Ok("Date varified...!");
         }
+        //Add PG Admin
+        public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG)
+        {
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
+            if(data!=null)
+            {
+                return BadRequest("User Already Exists..!");
+            }
+
+            if (data == null)
+            {
+                var TS = new PGAdminRegister();
+                TS.Name = AdminRegisterPG.Name;
+                TS.Email = AdminRegisterPG.Email;
+                TS.PhoneNumber = AdminRegisterPG.PhoneNumber;
+                TS.Created_date = DateTime.Now.Date;
+                TS.Is_Auth = true;
+                TS.Password = AdminRegisterPG.Password;
+                TS.Confirmpassword = AdminRegisterPG.Confirmpassword;
+                TS.Payment_Methods = AdminRegisterPG.Payment_Methods;
+                TS.PG_Name = AdminRegisterPG.PG_Name;
+                TS.PG_Location = AdminRegisterPG.PG_Location;
+                TS.Select_Area = AdminRegisterPG.Select_Area;
+                TS.Select_City = AdminRegisterPG.Select_City;
+                TS.Select_State = AdminRegisterPG.Select_State;
+                var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == AdminRegisterPG.User_type);
+                if (Role.Usertype.ToLower() == "pgadmin")
+                {
+                    TS.Role_Id = 1;
+                }
+                else
+                {
+                    TS.Role_Id = 2;
+                }
+                _dataContextClass.PGAdminRegisters.Add(TS);
+                _dataContextClass.SaveChanges();
+                int lastsummaryid = _dataContextClass.PGAdminRegisters.Max(item => item.PGAdmin_Id);
+
+
+                foreach (var s in AdminRegisterPG.PgShering)
+                {
+                    var T = new PGsheringType();
+                    T.SharingType = s.SharingType;
+                    T.Price = s.Price;
+                    T.PGAdminId = lastsummaryid;
+                    _dataContextClass.PGsheringType.Add(T);
+                    _dataContextClass.SaveChanges();
+                }
+
+                foreach (var s in AdminRegisterPG.PGType)
+                {
+                    var T = new PGTypes();
+                    T.PGtype = s.PGtype;
+                    T.PGAdminId = lastsummaryid;
+                    _dataContextClass.PGTypes.Add(T);
+                    _dataContextClass.SaveChanges();
+                }
+                return Ok("PG Admin Added...!");
+            }
+            else
+            {
+                return BadRequest("PG Admin already Submited...!");
+            }
+        }
+        //Dash Bord
+        public IActionResult GetByDashboard()
+        {
+            var UserCount = _dataContextClass.RegisterTable.Count();
+            var AdminCount = _dataContextClass.PGAdminRegisters.Count();
+            return Ok(new
+            {
+                User = UserCount,
+                Admin = AdminCount,
+            });
+        }
+
     }
 }

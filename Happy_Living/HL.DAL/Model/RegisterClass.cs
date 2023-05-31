@@ -20,6 +20,10 @@ namespace HL.DAL.Model
         public string? Password { get; set; }
         public string? ComPassword { get; set; }
         public string? HashPassword { get; set; }    
-        public int role_Id { get; set; } 
+        public int role_Id { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+        public DateTime Created_date { get; set; }  
     }
 }
