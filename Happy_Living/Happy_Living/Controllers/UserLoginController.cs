@@ -61,5 +61,11 @@ namespace Happy_Living.Controllers
         {
             return _login.PGAdminRegistration(AdminRegisterPG);
         }
+        [HttpPost]
+        [Route("SuperAdminRegister")]
+        public IActionResult SuperAdminRegister(SuperAdminRegister SuperAdminRegister)
+        {
+            return _login.SuperAdminRegister(SuperAdminRegister);
+        }
     }
 }

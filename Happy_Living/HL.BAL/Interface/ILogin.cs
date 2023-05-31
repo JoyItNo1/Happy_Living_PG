@@ -16,6 +16,8 @@ namespace HL.BAL.Interface
         public IActionResult Add_UserType(UserType userType);
         IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG);
+        public IActionResult ChangePassword(ConfirmPassword confirmPassword);
+        public IActionResult SuperAdminRegister(SuperAdminRegister SuperAdminRegister);
 
     }
 }

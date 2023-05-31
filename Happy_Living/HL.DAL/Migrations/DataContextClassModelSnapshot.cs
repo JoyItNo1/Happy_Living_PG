@@ -52,13 +52,13 @@ namespace HL.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PGAdmin_Id"), 1L, 1);
 
-                    b.Property<string>("Confirmpassword")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("Created_date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hashpassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("Is_Auth")
@@ -148,9 +148,6 @@ namespace HL.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Uid"), 1L, 1);
 
-                    b.Property<string>("ComPassword")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Created_date")
                         .HasColumnType("datetime2");
 
@@ -178,6 +175,40 @@ namespace HL.DAL.Migrations
                     b.HasKey("Uid");
 
                     b.ToTable("RegisterTable");
+                });
+
+            modelBuilder.Entity("HL.DAL.Model.SuperAdminClass", b =>
+                {
+                    b.Property<int>("SuperAdmin_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SuperAdmin_id"), 1L, 1);
+
+                    b.Property<DateTime?>("Created_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hashpassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("SuperAdmin_id");
+
+                    b.ToTable("SuperAdminClass");
                 });
 
             modelBuilder.Entity("HL.DAL.Model.UserType", b =>

@@ -66,7 +66,8 @@ namespace Happy_Living
             });
 
             // Adding application services
-            services.AddTransient<ILogin, UserRegister>();
+            services.AddTransient<ILogin, UserRegisterRepo>();
+            services.AddTransient<ISuperAdmin, SupperAdminRepo>();
             services.AddCors(options => {
                 options.AddPolicy("AllowAnyOrigin", builder => {
                     builder.AllowAnyOrigin();

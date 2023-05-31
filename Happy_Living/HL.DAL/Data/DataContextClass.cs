@@ -17,5 +17,6 @@ namespace HL.DAL.Data
         public DbSet<OTPClass> OTPClass { get; set; }   
         public DbSet<PGTypes> PGTypes { get; set; }
         public DbSet<PGAdminRegister> PGAdminRegisters { get; set; }
+        public DbSet<SuperAdminClass> SuperAdminClass { get; set; }
     }
 }
