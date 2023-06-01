@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Happy_Living",
+    "\\Happy_Living\\Happy_Living",
+    "\\Happy_Living\\Happy_Living\\Controllers",
     "\\Happy_Living\\HL.BAL",
     "\\Happy_Living\\HL.BAL\\Implementation",
     "\\Happy_Living\\HL.DAL"
   ],
-  "SelectedNode": "\\Happy_Living\\Happy_Living.sln",
+  "SelectedNode": "\\Happy_Living\\Happy_Living\\Controllers\\SuperAdminController.cs",
   "PreviewInSolutionExplorer": false
 }

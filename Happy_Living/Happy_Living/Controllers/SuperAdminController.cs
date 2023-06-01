@@ -53,9 +53,9 @@ namespace Happy_Living.Controllers
 
         [HttpGet]
         [Route("SuperAdminInfo")]
-        public IEnumerable<SuperAdminInfo> SuperAdminInfo(string? Email)
+        public IEnumerable<SuperAdminInfo> SuperAdminInfo(int? Id)
         {
-            return _superAdmin.SuperAdminInfo(Email);
+            return _superAdmin.SuperAdminInfo(Id);
         }
 
         [HttpPost]

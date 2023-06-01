@@ -1,5 +1,6 @@
 ﻿using HL.BAL.Interface;
 using HL.DAL.DomainModels;
+using HL.DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,12 +16,100 @@ namespace Happy_Living.Controllers
         {
             _PGAdmin = PGAdmin;
         }
+
         [HttpPost]
         [Route("PGUserAdd")]
-        IActionResult AddPGUser(PGAdminDomain pGAdminDomain)
+        public IActionResult AddPGUser(PGAdminDomain pGAdminDomain)
         {
             return _PGAdmin.AddPGUser(pGAdminDomain);
         }
 
+        [HttpPost]
+        [Route("AddPgWorkers")]
+        public IActionResult AddPgWorkers(PgWorkers pgWorkers)
+        {
+            return _PGAdmin.AddPgWorkers(pgWorkers);
+        }
+
+        [HttpDelete]
+        [Route("DeleteWorker")]
+        public IActionResult DeleteWorker(int Id)
+        {
+            return _PGAdmin.DeleteWorker(Id);
+        }
+
+        [HttpPut]
+        [Route("AddPgWorkersUpadate")]
+        public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers)
+        {
+            return _PGAdmin.AddPgWorkersUpadate(pgWorkers);
+        }
+
+        [HttpGet]
+        [Route("workerInfos")]
+        public IEnumerable<WorkerInfo> workerInfos()
+        {
+            return _PGAdmin.workerInfos();
+        }
+
+        [HttpGet]
+        [Route("Userinfo")]
+        public IEnumerable<PGUserInfo> Userinfo()
+        {
+            return _PGAdmin.Userinfo();
+        }
+
+        [HttpPut]
+        [Route("UpdatePGUser")]
+        public IActionResult UpdatePGUser(PGUserUpdate pGAdminDomain)
+        {
+            return _PGAdmin.UpdatePGUser(pGAdminDomain);
+        }
+
+        [HttpDelete]
+        [Route("DeletePGUser")]
+        public IActionResult DeletePGUser(int Id)
+        {
+            return _PGAdmin.DeletePGUser(Id);
+        }
+        [HttpGet]
+        [Route("RoomInfo")]
+        public IEnumerable<RoomInfo> RoomInfo()
+        {
+            return _PGAdmin.RoomInfo();
+        }
+
+        [HttpGet]
+        [Route("UserSuggetionCmpletInfo")]
+        public IEnumerable<UserSuggetionCmplet> UserSuggetionCmpletInfo()
+        {
+            return _PGAdmin.UserSuggetionCmpletInfo();
+        }
+
+        [HttpGet]
+        [Route("AdminInfo")]
+        public IEnumerable<AdminInfo> AdminInfo(int? Id)
+        {
+            return _PGAdmin.AdminInfo(Id);
+        }
+        [HttpGet]
+        [Route("DashbordUser")]
+        public IEnumerable<stetussss> DashbordUser(int Id)
+        {
+            return _PGAdmin.DashbordUser(Id);
+        }
+        [HttpPost]
+        [Route("AddMonthStetus")]
+        public IActionResult AddMonthStetus()
+        {
+            return _PGAdmin.AddMonthStetus();
+        }
+
+        [HttpPut]
+        [Route("UpdateMonthStetus")]
+        public IActionResult UpdateMonthStetus(AddStetus addStetus)
+        {
+            return _PGAdmin.UpdateMonthStetus(addStetus);
+        }
     }
 }

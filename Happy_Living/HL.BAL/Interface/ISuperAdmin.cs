@@ -16,7 +16,7 @@ namespace HL.BAL.Interface
         public IActionResult DeleteAdmin(int Id);
         public IActionResult ActiveOrDeactive(int Id, bool? Stetus);
         public IEnumerable<UserInfo> UserData();
-        public IEnumerable<SuperAdminInfo> SuperAdminInfo(string? Email);
+        public IEnumerable<SuperAdminInfo> SuperAdminInfo(int? Id);
         public IActionResult AddPGToUser(SelectedPgForUser selectedPGUser);
         public IEnumerable<Userinfo> UserInfo(int? Id);
     }

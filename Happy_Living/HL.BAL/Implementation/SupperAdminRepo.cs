@@ -99,10 +99,10 @@ namespace HL.BAL.Implementation
             return data.ToList();
         }
         //Supper Admin Info
-        public IEnumerable<SuperAdminInfo> SuperAdminInfo (string? Email)
+        public IEnumerable<SuperAdminInfo> SuperAdminInfo (int? Id)
         {
-            var data = from a in _dataContextClass.RegisterTable
-                       where (a.Email == Email)
+            var data = from a in _dataContextClass.SuperAdminClass
+                       where (a.SuperAdmin_id == Id)
                        select new SuperAdminInfo
                        {
                            Name = a.Name,
