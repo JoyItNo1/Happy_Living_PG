@@ -45,7 +45,7 @@ namespace Happy_Living.Controllers
         }
 
         [HttpGet]
-        [Route("UserInfo")]
+        [Route("UserData")]
         public IEnumerable<UserInfo> UserData()
         {
             return _superAdmin.UserData();

@@ -16,7 +16,7 @@ namespace HL.DAL.Model
 
         [ForeignKey("PGAdmin_Id")]
         public int? PGAdminId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public string? Gender { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
@@ -25,7 +25,7 @@ namespace HL.DAL.Model
         public string? Room_no { get; set; }
         public string? Password { get; set; }
         public string? HashPassword { get; set; }
-        public int role_Id { get; set; }
+        public int? Role_Id { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
