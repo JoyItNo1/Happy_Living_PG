@@ -9,7 +9,7 @@ namespace HL.DAL.Model
     public class UserType
     {
         public int Id { get; set; }
-        public string Usertype { get; set; }
+        public string? Usertype { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.deps.json
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.runtimeconfig.json
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.pdb
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.csproj.AssemblyReference.cache
@@ -9,6 +10,5 @@ C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\ob
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\refint\HL.DAL.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.pdb
-C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\ref\HL.DAL.dll
-C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.runtimeconfig.json
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.genruntimeconfig.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\ref\HL.DAL.dll

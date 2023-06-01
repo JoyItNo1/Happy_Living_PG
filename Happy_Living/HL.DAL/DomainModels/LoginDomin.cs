@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HL.DAL.Model
+namespace HL.DAL.DomainModels
 {
     public class LoginDomin
     {
@@ -33,6 +33,7 @@ namespace HL.DAL.Model
         public DateTime? Payment_Methods { get; set; }
         public List<PgShering>? PgShering { get; set; }
         public List<PGType>? PGType { get; set; }
+        public List<Imagepath>? Imagepath { get; set; }
 
     }
     public class PgShering
@@ -47,8 +48,31 @@ namespace HL.DAL.Model
     public class ConfirmPassword
     {
         public string? Email { get; set; }
-        public string? PhoneNumber { get; set; } 
-        public string? Password { get; set;}
+        public string? PhoneNumber { get; set; }
+        public string? Password { get; set; }
         public string? ConfirmPasswords { get; set; }
     }
+    public class Imagepath
+    {
+        public string? Image1 { get; set; }
+        public string? Image2 { get; set; }
+        public string? Image3 { get; set; }
+        public string? Image4 { get; set; }
+    }
+    public class SuperAdminRegister
+    {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Password { get; set; }
+        public string? Confirmpassword { get; set; }
+    }
+    public class Forgetpassword
+    {
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Password { get; set; }
+
+    }
+
 }

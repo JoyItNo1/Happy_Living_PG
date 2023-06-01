@@ -1,4 +1,5 @@
-﻿using HL.DAL.Model;
+﻿using HL.DAL.DomainModels;
+using HL.DAL.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace HL.BAL.Interface
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG);
         public IActionResult ChangePassword(ConfirmPassword confirmPassword);
         public IActionResult SuperAdminRegister(SuperAdminRegister SuperAdminRegister);
+        public IActionResult ForgotPassword(Forgetpassword forgetpassword);
 
     }
 }

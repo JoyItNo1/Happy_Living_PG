@@ -12,6 +12,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using HL.DAL.DomainModels;
 
 namespace HL.BAL.Implementation
 {
@@ -19,10 +22,12 @@ namespace HL.BAL.Implementation
     {
         private readonly DataContextClass _dataContextClass;
         private readonly IConfiguration _configuration;
-        public UserRegisterRepo(DataContextClass dataContextClass , IConfiguration configuration) 
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public UserRegisterRepo(DataContextClass dataContextClass , IConfiguration configuration , IWebHostEnvironment hostEnvironment) 
         {
             _dataContextClass = dataContextClass;
             _configuration = configuration;
+            _hostEnvironment = hostEnvironment;
         }
         //user register
         public  IActionResult Register(RegisterUser registerUser)
@@ -354,11 +359,10 @@ namespace HL.BAL.Implementation
                 return BadRequest("Password is not Matching");
             }
             var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
-            if (data != null)
+            if (data.PG_Name != null)
             {
-                return BadRequest("User Already Exists..!");
+                return BadRequest("PG Name Already Existes");
             }
-
             if (data == null)
             {
                 var TS = new PGAdminRegister();
@@ -397,6 +401,18 @@ namespace HL.BAL.Implementation
                     T.Price = s.Price;
                     T.PGAdminId = lastsummaryid;
                     _dataContextClass.PGsheringType.Add(T);
+                    _dataContextClass.SaveChanges();
+                }
+
+                foreach(var s in AdminRegisterPG.Imagepath)
+                {
+                    var T = new ImageClass();
+                    T.PGAdminId = lastsummaryid;
+                    T.Image1 = s.Image1;
+                    T.Image2 = s.Image2;
+                    T.Image3 = s.Image3;
+                    T.Image4 = s.Image4;
+                    _dataContextClass.ImageTable.Add(T);
                     _dataContextClass.SaveChanges();
                 }
 
@@ -464,6 +480,51 @@ namespace HL.BAL.Implementation
                 _dataContextClass.SaveChanges();
             }
             return Ok("User Registered..!");
+        }
+        //Upload Images
+        public async Task<IActionResult> UploadImage(IFormFile image)
+        {
+            if (image == null || image.Length == 0)
+            {
+                return BadRequest("Image file is not selected");
+            }
+            var folderPath = Path.Combine(_hostEnvironment.ContentRootPath, "Images");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            var imagePath = Path.Combine("Images", fileName);
+            return Ok(new { imagePath });
+        }
+
+
+        //Upload Images Path
+        public IActionResult GetImage(string imagePath)
+        {
+            var fullPath = Path.Combine(_hostEnvironment.ContentRootPath, imagePath);
+            var imageBytes = System.IO.File.ReadAllBytes(fullPath);
+            return File(imageBytes, "image/jpeg");
+        }
+        public IActionResult ForgotPassword(Forgetpassword forgetpassword)
+        {
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(x => x.Email == forgetpassword.Email || x.PhoneNumber == forgetpassword.PhoneNumber);
+            if (data == null)
+            {
+                return BadRequest("User Not Existes..!");
+            }
+            data.Password = forgetpassword.Password;
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetpassword.Password);
+            data.Hashpassword = passwordHash;
+            _dataContextClass.SaveChanges();
+            return Ok("Password Updated..!");
+
         }
     }
 }

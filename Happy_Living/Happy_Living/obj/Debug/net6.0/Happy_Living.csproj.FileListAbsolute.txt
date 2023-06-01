@@ -6,10 +6,12 @@ C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Liv
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Happy_Living.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Happy_Living.pdb
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
@@ -24,6 +26,7 @@ C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Liv
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Scrutor.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -72,6 +75,3 @@ C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Liv
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\obj\Debug\net6.0\Happy_Living.pdb
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\obj\Debug\net6.0\Happy_Living.genruntimeconfig.cache
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\obj\Debug\net6.0\ref\Happy_Living.dll
-C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Humanizer.dll
-C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\Happy_Living\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

@@ -1,4 +1,4 @@
-﻿using HL.DAL.Model;
+﻿using HL.DAL.DomainModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,5 +17,7 @@ namespace HL.BAL.Interface
         public IActionResult ActiveOrDeactive(int Id, bool? Stetus);
         public IEnumerable<UserInfo> UserData();
         public IEnumerable<SuperAdminInfo> SuperAdminInfo(string? Email);
+        public IActionResult AddPGToUser(SelectedPgForUser selectedPGUser);
+        public IEnumerable<Userinfo> UserInfo(int? Id);
     }
 }

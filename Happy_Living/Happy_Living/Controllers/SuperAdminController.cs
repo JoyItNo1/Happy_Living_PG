@@ -1,5 +1,5 @@
 ﻿using HL.BAL.Interface;
-using HL.DAL.Model;
+using HL.DAL.DomainModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,5 +58,18 @@ namespace Happy_Living.Controllers
             return _superAdmin.SuperAdminInfo(Email);
         }
 
+        [HttpPost]
+        [Route("AddPGToUser")]
+        public IActionResult AddPGToUser(SelectedPgForUser selectedPGUser)
+        {
+            return _superAdmin.AddPGToUser(selectedPGUser);
+        }
+
+        [HttpGet]
+        [Route("UserInfo")]
+        public IEnumerable<Userinfo> UserInfo(int? Id)
+        {
+            return _superAdmin.UserInfo(Id);
+        }
     }
 }
