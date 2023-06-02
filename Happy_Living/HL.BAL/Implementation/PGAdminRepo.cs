@@ -270,7 +270,7 @@ namespace HL.BAL.Implementation
                        join d in _dataContextClass.Rooms
                        on f.Flore_Id equals d.Flore_No
                        join g in _dataContextClass.Room_Sharing
-                       on d.Rooms_Id equals g.Rooms_No
+                       on d.Room_no equals g.Rooms_No
                        join h in _dataContextClass.PGUserTable
                        on g.Email equals h.Email
                        select new RoomInfo
@@ -287,6 +287,7 @@ namespace HL.BAL.Implementation
         public IEnumerable<AdminInfo> AdminInfo(int? Id)
         {
             var data = from a in _dataContextClass.PGAdminRegisters
+                       where(a.PGAdmin_Id== Id)
                        select new AdminInfo
                        {
                            Name = a.Name,

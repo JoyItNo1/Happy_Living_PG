@@ -75,13 +75,13 @@ namespace HL.BAL.Implementation
             {
                 data.Is_Auth = true;
                 _dataContextClass.SaveChanges();
-                return Ok("Updeted..!");
+                return Ok("Updated..!");
             }
             else
             {
                 data.Is_Auth = false;
                 _dataContextClass.SaveChanges();
-                return Ok("Updeted..!");
+                return Ok("Updated..!");
             }
         }
         //User Information
