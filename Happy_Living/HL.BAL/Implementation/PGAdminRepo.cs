@@ -106,6 +106,7 @@ namespace HL.BAL.Implementation
             _dataContextClass.SaveChanges();
             return Ok("Worker Updated..!");
         }
+
         public IActionResult DeleteWorker(int Id)
         {
             var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PGWorks_Id == Id);
@@ -140,7 +141,7 @@ namespace HL.BAL.Implementation
         public IActionResult UpdatePGUser(PGUserUpdate pGAdminDomain)
         {
             var data = _dataContextClass.PGUserTable.FirstOrDefault(b => b.Email == pGAdminDomain.Email || b.PhoneNumber == pGAdminDomain.PhoneNumber);
-            if (data != null)
+            if (data == null)
                 return BadRequest("User Not Exist...!");
 
             data.Name = pGAdminDomain.Name;

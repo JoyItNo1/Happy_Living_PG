@@ -358,8 +358,8 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("Password is not Matching");
             }
-            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
-            if (data.PG_Name != null)
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber && i.PG_Name == AdminRegisterPG.PG_Name);
+            if (data != null)
             {
                 return BadRequest("PG Name Already Existes");
             }

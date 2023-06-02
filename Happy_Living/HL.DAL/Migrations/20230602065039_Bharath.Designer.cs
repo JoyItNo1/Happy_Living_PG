@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HL.DAL.Migrations
 {
     [DbContext(typeof(DataContextClass))]
-    [Migration("20230602050036_HL1")]
-    partial class HL1
+    [Migration("20230602065039_Bharath")]
+    partial class Bharath
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

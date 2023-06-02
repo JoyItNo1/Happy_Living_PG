@@ -5,18 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HL.DAL.Migrations
 {
-    public partial class HL1 : Migration
+    public partial class Bharath : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Usertype",
-                table: "UserTypes",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
             migrationBuilder.CreateTable(
                 name: "building_blockclas",
                 columns: table => new
@@ -62,6 +54,21 @@ namespace HL.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OTPClass",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OTP = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OTPClass", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PaymentImage",
                 columns: table => new
                 {
@@ -74,6 +81,61 @@ namespace HL.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PaymentImage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PGAdminRegisters",
+                columns: table => new
+                {
+                    PGAdmin_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hashpassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Select_State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Select_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Select_Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PG_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PG_Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created_date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Payment_Methods = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Role_Id = table.Column<int>(type: "int", nullable: true),
+                    Is_Auth = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PGAdminRegisters", x => x.PGAdmin_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PGsheringType",
+                columns: table => new
+                {
+                    Sheretype_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PGAdminId = table.Column<int>(type: "int", nullable: true),
+                    SharingType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PGsheringType", x => x.Sheretype_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PGTypes",
+                columns: table => new
+                {
+                    PGTypes_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PGAdminId = table.Column<int>(type: "int", nullable: true),
+                    PGtype = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PGTypes", x => x.PGTypes_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +177,26 @@ namespace HL.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PGWorks", x => x.PGWorks_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RegisterTable",
+                columns: table => new
+                {
+                    Uid = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HashPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    role_Id = table.Column<int>(type: "int", nullable: false),
+                    Created_date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegisterTable", x => x.Uid);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +272,25 @@ namespace HL.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SuperAdminClass",
+                columns: table => new
+                {
+                    SuperAdmin_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hashpassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created_date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Role_Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SuperAdminClass", x => x.SuperAdmin_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserSuggetionCmplet",
                 columns: table => new
                 {
@@ -207,6 +308,19 @@ namespace HL.DAL.Migrations
                 {
                     table.PrimaryKey("PK_UserSuggetionCmplet", x => x.SC_Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "UserTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Usertype = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTypes", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -221,13 +335,28 @@ namespace HL.DAL.Migrations
                 name: "ImageTable");
 
             migrationBuilder.DropTable(
+                name: "OTPClass");
+
+            migrationBuilder.DropTable(
                 name: "PaymentImage");
+
+            migrationBuilder.DropTable(
+                name: "PGAdminRegisters");
+
+            migrationBuilder.DropTable(
+                name: "PGsheringType");
+
+            migrationBuilder.DropTable(
+                name: "PGTypes");
 
             migrationBuilder.DropTable(
                 name: "PGUserTable");
 
             migrationBuilder.DropTable(
                 name: "PGWorks");
+
+            migrationBuilder.DropTable(
+                name: "RegisterTable");
 
             migrationBuilder.DropTable(
                 name: "Room_Sharing");
@@ -242,17 +371,13 @@ namespace HL.DAL.Migrations
                 name: "Stetus");
 
             migrationBuilder.DropTable(
+                name: "SuperAdminClass");
+
+            migrationBuilder.DropTable(
                 name: "UserSuggetionCmplet");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Usertype",
-                table: "UserTypes",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+            migrationBuilder.DropTable(
+                name: "UserTypes");
         }
     }
 }

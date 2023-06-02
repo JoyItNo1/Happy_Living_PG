@@ -12,3 +12,17 @@ C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\ob
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.pdb
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.genruntimeconfig.cache
 C:\Users\Shivakumara S C\Documents\GitHub\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\ref\HL.DAL.dll
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.deps.json
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.runtimeconfig.json
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.dll
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\bin\Debug\net6.0\HL.DAL.pdb
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.csproj.AssemblyReference.cache
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.AssemblyInfoInputs.cache
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.AssemblyInfo.cs
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.dll
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\refint\HL.DAL.dll
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.pdb
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\HL.DAL.genruntimeconfig.cache
+C:\Users\Bharath K V\Documents\Github\HL Project\Happy_Living_PG\Happy_Living\HL.DAL\obj\Debug\net6.0\ref\HL.DAL.dll

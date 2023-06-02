@@ -115,13 +115,13 @@ namespace HL.BAL.Implementation
         //User Add PG to user
         public IActionResult AddPGToUser (SelectedPgForUser selectedPGUser)
         {
-            var data = _dataContextClass.SelectedPGUser.FirstOrDefault(s => s.Select_PG == selectedPGUser.Select_PG);
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(s => s.PG_Name == selectedPGUser.Select_PG);
             if (data == null)
             {
                 return BadRequest(" PG is not available..!");
             }
             var T = new SelectedPGUser();
-            T.PGAdminId = data.PGAdminId;
+            T.PGAdminId = data.PGAdmin_Id;
             T.Select_State = selectedPGUser.Select_State;
             T.Select_PG = selectedPGUser.Select_PG;
             T.Select_City = selectedPGUser.Select_City;
