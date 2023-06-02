@@ -132,5 +132,13 @@ namespace Happy_Living.Controllers
         {
             return _PGAdmin.Addpayment(paymentImage);
         }
+
+        [HttpPost]
+        [Route("AddRoom")]
+        public IActionResult AddRoom(AddRooms addRooms)
+        {
+            return _PGAdmin.AddRoom(addRooms);
+        }
+       
     }
 }

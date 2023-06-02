@@ -28,5 +28,6 @@ namespace HL.BAL.Interface
         public IEnumerable<Stetusinfo> StetusAll(int? Id);
         public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass);
         public IActionResult Addpayment(Payment paymentImage);
+        public IActionResult AddRoom(AddRooms addRooms);
     }
 }
