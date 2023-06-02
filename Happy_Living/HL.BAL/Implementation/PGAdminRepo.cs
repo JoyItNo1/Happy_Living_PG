@@ -208,18 +208,28 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("Please enter some data...!");
             }
-            var TS = new building_blockclas();
-            TS.blockclas_No = addRooms.blockclas_No;
-            _dataContextClass.building_blockclas.Add(TS);
-            _dataContextClass.SaveChanges();
-            int lastsummaryid = _dataContextClass.building_blockclas.Max(item => item.building_blockclas_Id);
+            var f = _dataContextClass.building_blockclas.FirstOrDefault(p => p.blockclas_No == addRooms.blockclas_No);
+            if (f != null)
+            {
+                f.blockclas_No = addRooms.blockclas_No;
+                _dataContextClass.SaveChanges();
+            }
+            else
+            {
+                var TS = new building_blockclas();
+                TS.blockclas_No = addRooms.blockclas_No;
+                _dataContextClass.building_blockclas.Add(TS);
+                _dataContextClass.SaveChanges();
+            }
+            //int lastsummaryid = _dataContextClass.building_blockclas.Max(item => item.building_blockclas_Id);
 
 
             foreach (var s in addRooms.Addfloure)
             {
                 var T = new Flore();
-                T.block_no = lastsummaryid;
+                T.block_no = addRooms.blockclas_No;
                 T.Flore_No = s.Flore_No;
+
                 _dataContextClass.Flore.Add(T);
                 _dataContextClass.SaveChanges();
             }
@@ -232,10 +242,10 @@ namespace HL.BAL.Implementation
                 {
                     return BadRequest("Room Already Entered");
                 }
-                var T = new Rooms();
-                T.Flore_No = lastsummaryid1;
-                T.Room_no = s.Room_no;
-                _dataContextClass.Rooms.Add(T);
+                var Td = new Rooms();
+                Td.Flore_No = s.Flore_No;
+                Td.Room_no = s.Room_no;
+                _dataContextClass.Rooms.Add(Td);
                 _dataContextClass.SaveChanges();
             }
             int lastsummaryid11 = _dataContextClass.Rooms.Max(item => item.Rooms_Id);
@@ -243,7 +253,7 @@ namespace HL.BAL.Implementation
             foreach (var s in addRooms.Roomshareing)
             {
                 var T = new Room_Sharing();
-                T.Rooms_No = lastsummaryid11;
+                T.Rooms_No = s.Rooms_No;
                 T.Email = "";
                 T.room_sharing = s.room_sharing;
                 _dataContextClass.Room_Sharing.Add(T);

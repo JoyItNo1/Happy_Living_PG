@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BJKYSIWsn7efMxgbLqxJ8oY6mogsIK2XvHNK5uC6OEWbyRY0ZS4eHGgiWnPH5XZh8T4uGgMXDLaN12LEq0EAOw==",
+  "dgSpecHash": "g7y8kkO1KspBtFxYruNQ7dxtAwp01f7Yzdnok8JA6XyXqZ5+vSgh757ONbmXmkHfgovZe5tWSwcRSyiHM9Yz0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Happy_Living_PG\\Happy_Living\\HL.BAL\\HL.BAL.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
+    "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.0\\microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
