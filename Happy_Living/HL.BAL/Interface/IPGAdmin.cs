@@ -11,7 +11,7 @@ namespace HL.BAL.Interface
 {
     public interface IPGAdmin
     {
-        IActionResult AddPGUser(PGAdminDomain pGAdminDomain);
+        public IActionResult AddPGUser(PGAdminDomain pGAdminDomain);
         public IActionResult DeleteWorker(int Id);
         public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers);
         public IEnumerable<WorkerInfo> workerInfos();
@@ -25,5 +25,8 @@ namespace HL.BAL.Interface
         public IEnumerable<stetussss> DashbordUser(int Id);
         public IActionResult AddMonthStetus();
         public IActionResult UpdateMonthStetus(AddStetus addStetus);
+        public IEnumerable<Stetusinfo> StetusAll(int? Id);
+        public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass);
+        public IActionResult Addpayment(Payment paymentImage);
     }
 }

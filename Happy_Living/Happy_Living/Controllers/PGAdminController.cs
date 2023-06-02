@@ -12,7 +12,7 @@ namespace Happy_Living.Controllers
     {
         private readonly IPGAdmin _PGAdmin;
 
-        PGAdminController(IPGAdmin PGAdmin)
+        public PGAdminController(IPGAdmin PGAdmin)
         {
             _PGAdmin = PGAdmin;
         }
@@ -110,6 +110,27 @@ namespace Happy_Living.Controllers
         public IActionResult UpdateMonthStetus(AddStetus addStetus)
         {
             return _PGAdmin.UpdateMonthStetus(addStetus);
+        }
+
+        [HttpGet]
+        [Route("StetusAll")]
+        public IEnumerable<Stetusinfo> StetusAll(int? Id)
+        {
+            return _PGAdmin.StetusAll(Id);
+        }
+
+        [HttpPost]
+        [Route("SuggestionOrCompliant")]
+        public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass)
+        {
+            return _PGAdmin.SuggestionOrCompliant(userSuggetionCmpletClass);
+        }
+
+        [HttpPost]
+        [Route("Addpayment")]
+        public IActionResult Addpayment(Payment paymentImage)
+        {
+            return _PGAdmin.Addpayment(paymentImage);
         }
     }
 }

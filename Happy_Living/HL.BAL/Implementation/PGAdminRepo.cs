@@ -338,9 +338,52 @@ namespace HL.BAL.Implementation
         }
         public IActionResult Addpayment(Payment paymentImage)
         {
-            var data = _dataContextClass.PaymentImage.FirstOrDefaultAsync(t=>t.UserId== paymentImage.UserId);
-            return Ok(data);
+            var currentDate = DateTime.Now;
+            var currentMonth = currentDate.Month;
+            var data =  _dataContextClass.PaymentImage.FirstOrDefault(t =>
+                t.UserId == paymentImage.UserId && t.Created_date.Month == currentMonth);
+            if(data != null)
+            {
+                return BadRequest("Already Sent Payment...!");
+            }
+            PaymentImage B = new PaymentImage();
+            B.PaymentsImage = paymentImage.PaymentsImage;
+            B.Created_date = currentDate;
+            B.UserId = paymentImage.UserId;
+            _dataContextClass.PaymentImage.Add(B);
+            _dataContextClass.SaveChanges();
+            return Ok("Payment Details Sent...!");
         }
-
+        public IEnumerable<Stetusinfo> StetusAll(int? Id)
+        {
+            var data = from a in _dataContextClass.Stetus
+                       join f in _dataContextClass.PGUserTable
+                        on a.PGUser_Id equals f.PGUser_Id
+                       where (f.PGUser_Id == Id)
+                       select new Stetusinfo
+                       {
+                           Date = a.Created_date,
+                           Stetus = a.Stetuss
+                       };
+            return data.ToList();
+        }
+        public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass)
+        {
+            if (userSuggetionCmpletClass == null)
+            {
+                return BadRequest("Enter Data...!");
+            }
+            UserSuggetionCmplet user = new UserSuggetionCmplet();
+            user.User_Id = userSuggetionCmpletClass.User_Id;
+            user.User_name = userSuggetionCmpletClass.User_name;
+            user.SuggetionOrCmplet = userSuggetionCmpletClass.SuggetionOrCmplet;
+            user.Block_no = userSuggetionCmpletClass.Block_no;
+            user.Flour_no = userSuggetionCmpletClass.Flour_no;
+            user.Room_no = userSuggetionCmpletClass.Room_no;
+            user.Created_date = DateTime.Now;
+            _dataContextClass.UserSuggetionCmplet.Add(user);
+            _dataContextClass.SaveChanges();
+            return Ok("Message Sent...!");
+        }
     }
 }

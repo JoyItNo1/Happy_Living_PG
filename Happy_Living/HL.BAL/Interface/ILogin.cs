@@ -11,11 +11,11 @@ namespace HL.BAL.Interface
 {
     public interface ILogin
     {
-        IActionResult Register(RegisterUser registerUser);
-        IActionResult LogIn(string? Email, string? PhoneNumber, string? Password);
-        IActionResult validation(string? Email, string? phonenumber);
+        public IActionResult Register(RegisterUser registerUser);
+        public IActionResult LogIn(string? Email, string? PhoneNumber, string? Password);
+        public IActionResult validation(string? Email, string? phonenumber);
         public IActionResult Add_UserType(UserType userType);
-        IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
+        public IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG);
         public IActionResult ChangePassword(ConfirmPassword confirmPassword);
         public IActionResult SuperAdminRegister(SuperAdminRegister SuperAdminRegister);

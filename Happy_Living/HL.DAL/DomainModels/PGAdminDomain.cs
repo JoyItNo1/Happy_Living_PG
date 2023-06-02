@@ -121,4 +121,18 @@ namespace HL.DAL.DomainModels
         public string UserId { get; set; }
         public string? PaymentsImage { get; set; }
     }
+    public class Stetusinfo
+    {
+        public DateTime? Date { get; set; }
+        public string? Stetus { get; set;}
+    }
+    public class UserSuggetionCmpletClass
+    {
+        public int? User_Id { get; set; }
+        public string? User_name { get; set; }
+        public string? SuggetionOrCmplet { get; set; }
+        public int? Block_no { get; set; }
+        public int? Flour_no { get; set; }
+        public int? Room_no { get; set; }
+    }
 }
