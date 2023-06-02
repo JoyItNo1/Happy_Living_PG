@@ -227,6 +227,11 @@ namespace HL.BAL.Implementation
 
             foreach (var s in addRooms.RoomsNo)
             {
+                var data = _dataContextClass.Rooms.FirstOrDefault(o => o.Room_no == s.Room_no);
+                if (data != null)
+                {
+                    return BadRequest("Room Already Entered");
+                }
                 var T = new Rooms();
                 T.Flore_No = lastsummaryid1;
                 T.Room_no = s.Room_no;
