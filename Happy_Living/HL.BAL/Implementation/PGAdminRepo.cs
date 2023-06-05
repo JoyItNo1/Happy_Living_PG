@@ -57,7 +57,7 @@ namespace HL.BAL.Implementation
             }
             else
             {
-                return BadRequest("Not Rooms Allocated..!");
+                return BadRequest("Not Rooms Alloted..!");
             }
             _dataContextClass.PGUserTable.Add(PGUser);
             _dataContextClass.SaveChanges();
@@ -168,7 +168,7 @@ namespace HL.BAL.Implementation
                         }
                         else
                         {
-                            return BadRequest("No bads available..!");
+                            return BadRequest("No beds available..!");
                         }
                     }
                 }
@@ -330,7 +330,7 @@ namespace HL.BAL.Implementation
                 _dataContextClass.Stetus.Add(T);
                 _dataContextClass.SaveChanges();
             }
-            return Ok("Monthly Stetus Added..!");
+            return Ok("Monthly Status Added..!");
         }
         public IActionResult UpdateMonthStetus(AddStetus addStetus)
         {
@@ -341,7 +341,7 @@ namespace HL.BAL.Implementation
             }
             data.Stetuss = addStetus.Stetus;
             _dataContextClass.SaveChanges();
-            return Ok("Recored Updated...!");
+            return Ok("Record Updated...!");
         }
         public IEnumerable<stetussss> DashbordUser(int Id)
         {

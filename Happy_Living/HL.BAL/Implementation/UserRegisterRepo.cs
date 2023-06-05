@@ -37,7 +37,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (registerUser.Email == "" || !Regex.IsMatch(registerUser.Email, email))
             {
-                return BadRequest("Invalied Email");
+                return BadRequest("Invalid Email");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (!Regex.IsMatch(registerUser.Password, Passwordpattern))
@@ -75,144 +75,144 @@ namespace HL.BAL.Implementation
             return Ok("User Registered..!");
         }
         //user Login
-        public IActionResult LogIn(string? Email,string?  PhoneNumber ,string? Password)
+        public IActionResult LogIn(LoginDomin loginDomin)
         {
-            if (Email == null && PhoneNumber == null)
+            if (loginDomin.Email == null)
                 return NotFound();
-            var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == Email || i.PhoneNumber == PhoneNumber);
+            var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == loginDomin.Email);//|| i.PhoneNumber == PhoneNumber);
             if (Details == null)
             {
-                var Details121 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == Email || i.PhoneNumber == PhoneNumber);
+                var Details121 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == loginDomin.Email);// i.PhoneNumber == PhoneNumber);
                 if (Details121 == null)
                 {
-                    var Details1211 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == Email || i.PhoneNumber == PhoneNumber);
+                    var Details1211 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == loginDomin.Email);// i.PhoneNumber == PhoneNumber);
                     if (Details1211 == null)
                         return NotFound();
                     string storedPasswordHash1211 = Details1211.Hashpassword;
-                    bool isPasswordCorrect1211 = BCrypt.Net.BCrypt.Verify(Password, storedPasswordHash1211);
+                    bool isPasswordCorrect1211 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash1211);
                     if (!isPasswordCorrect1211)
                     {
                         return NotFound("Password Not Found");
                     }
-                    if (PhoneNumber != null)
-                    {
-                        List<Claim> claims1125 = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.SerialNumber, PhoneNumber)
-                    };
-                        var newKey1125 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                        _configuration.GetSection("AppSettings:Token").Value!));
-                        var creds1125 = new SigningCredentials(newKey1125, SecurityAlgorithms.HmacSha512Signature);
-                        var token1125 = new JwtSecurityToken(claims: claims1125, expires: DateTime.Now.AddDays(1), signingCredentials: creds1125);
-                        var y15 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
-                        return Ok(new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token1125),
-                            expiration = token1125.ValidTo,
-                            Employee_Id = y15.Uid,
-                            Role_Id = y15.role_Id,
-                        });
-                    }
+                    //if (PhoneNumber != null)
+                    //{
+                    //    List<Claim> claims1125 = new List<Claim>
+                    //{
+                    //    new Claim(ClaimTypes.SerialNumber, PhoneNumber)
+                    //};
+                    //    var newKey1125 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                    //    _configuration.GetSection("AppSettings:Token").Value!));
+                    //    var creds1125 = new SigningCredentials(newKey1125, SecurityAlgorithms.HmacSha512Signature);
+                    //    var token1125 = new JwtSecurityToken(claims: claims1125, expires: DateTime.Now.AddDays(1), signingCredentials: creds1125);
+                    //    var y15 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                    //    return Ok(new
+                    //    {
+                    //        token = new JwtSecurityTokenHandler().WriteToken(token1125),
+                    //        expiration = token1125.ValidTo,
+                    //        Employee_Id = y15.Uid,
+                    //        Role_Id = y15.role_Id,
+                    //    });
+                    //}
                     List<Claim> claims1235 = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Email, Email)
+                        new Claim(ClaimTypes.Email, loginDomin.Email)
                     };
                     var newKey1235 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                     _configuration.GetSection("AppSettings:Token").Value!));
                     var creds1235 = new SigningCredentials(newKey1235, SecurityAlgorithms.HmacSha512Signature);
                     var token1235 = new JwtSecurityToken(claims: claims1235, expires: DateTime.Now.AddDays(1), signingCredentials: creds1235);
-                    var y1235 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                    var y1235 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token1235),
                         expiration = token1235.ValidTo,
-                        Employee_Id = y1235.Uid,
+                        Admin_id = y1235.Uid,
                         Role_Id = y1235.role_Id,
                     });
                 }
                 string storedPasswordHash12 = Details121.Hashpassword;
-                bool isPasswordCorrect12 = BCrypt.Net.BCrypt.Verify(Password, storedPasswordHash12);
+                bool isPasswordCorrect12 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash12);
                 if (!isPasswordCorrect12)
                 {
                     return NotFound("Password Not Found");
                 }
-                if (PhoneNumber != null)
-                {
-                    List<Claim> claims112 = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.SerialNumber, PhoneNumber)
-                    };
-                    var newKey112 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                    _configuration.GetSection("AppSettings:Token").Value!));
-                    var creds112 = new SigningCredentials(newKey112, SecurityAlgorithms.HmacSha512Signature);
-                    var token112 = new JwtSecurityToken(claims: claims112, expires: DateTime.Now.AddDays(1), signingCredentials: creds112);
-                    var y1 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
-                    return Ok(new
-                    {
-                        token = new JwtSecurityTokenHandler().WriteToken(token112),
-                        expiration = token112.ValidTo,
-                        Employee_Id = y1.Uid,
-                        Role_Id = y1.role_Id,
-                    });
-                }
-                    List<Claim> claims123 = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, Email)
-                    };
-                var newKey123 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value!));
-                var creds123 = new SigningCredentials(newKey123, SecurityAlgorithms.HmacSha512Signature);
-                var token123 = new JwtSecurityToken(claims: claims123, expires: DateTime.Now.AddDays(1), signingCredentials: creds123);
-                var y123 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token123),
-                    expiration = token123.ValidTo,
-                    Employee_Id = y123.Uid,
-                    Role_Id = y123.role_Id,
-                });
+                    //    if (PhoneNumber != null)
+                    //    {
+                    //        List<Claim> claims112 = new List<Claim>
+                    //        {
+                    //            new Claim(ClaimTypes.SerialNumber, PhoneNumber)
+                    //        };
+                    //        var newKey112 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                    //        _configuration.GetSection("AppSettings:Token").Value!));
+                    //        var creds112 = new SigningCredentials(newKey112, SecurityAlgorithms.HmacSha512Signature);
+                    //        var token112 = new JwtSecurityToken(claims: claims112, expires: DateTime.Now.AddDays(1), signingCredentials: creds112);
+                    //        var y1 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                    //        return Ok(new
+                    //        {
+                    //            token = new JwtSecurityTokenHandler().WriteToken(token112),
+                    //            expiration = token112.ValidTo,
+                    //            Employee_Id = y1.Uid,
+                    //            Role_Id = y1.role_Id,
+                    //        });
+                    //    }
+                    //        List<Claim> claims123 = new List<Claim>
+                    //        {
+                    //            new Claim(ClaimTypes.Email, Email)
+                    //        };
+                    //    var newKey123 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                    //    _configuration.GetSection("AppSettings:Token").Value!));
+                    //    var creds123 = new SigningCredentials(newKey123, SecurityAlgorithms.HmacSha512Signature);
+                    //    var token123 = new JwtSecurityToken(claims: claims123, expires: DateTime.Now.AddDays(1), signingCredentials: creds123);
+                    //    var y123 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                    //    return Ok(new
+                    //    {
+                    //        token = new JwtSecurityTokenHandler().WriteToken(token123),
+                    //        expiration = token123.ValidTo,
+                    //        Employee_Id = y123.Uid,
+                    //        Role_Id = y123.role_Id,
+                    //    });
             }
             string storedPasswordHash = Details.HashPassword;
-            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(Password, storedPasswordHash);
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash);
             if (!isPasswordCorrect)
             {
                 return NotFound("Password Not Found");
             }
-            if (PhoneNumber != null) {
+                    //if (PhoneNumber != null) {
 
-                List<Claim> claims1 = new List<Claim>
-                {
+                    //    List<Claim> claims1 = new List<Claim>
+                    //    {
 
-                        new Claim(ClaimTypes.SerialNumber, PhoneNumber)
-                };
-                var newKey1 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value!));
-                var creds1 = new SigningCredentials(newKey1, SecurityAlgorithms.HmacSha512Signature);
-                var token1 = new JwtSecurityToken(claims: claims1, expires: DateTime.Now.AddDays(1), signingCredentials: creds1);
-                var y17 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token1),
-                    expiration = token1.ValidTo,
-                    Employee_Id = y17.Uid,
-                    Role_Id = y17.role_Id,
-                });
-            }
+                    //            new Claim(ClaimTypes.SerialNumber, PhoneNumber)
+                    //    };
+                    //    var newKey1 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                    //    _configuration.GetSection("AppSettings:Token").Value!));
+                    //    var creds1 = new SigningCredentials(newKey1, SecurityAlgorithms.HmacSha512Signature);
+                    //    var token1 = new JwtSecurityToken(claims: claims1, expires: DateTime.Now.AddDays(1), signingCredentials: creds1);
+                    //    var y17 = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                    //    return Ok(new
+                    //    {
+                    //        token = new JwtSecurityTokenHandler().WriteToken(token1),
+                    //        expiration = token1.ValidTo,
+                    //        Employee_Id = y17.Uid,
+                    //        Role_Id = y17.role_Id,
+                    //    });
+                    //}
             List<Claim> claims = new List<Claim>
             {
 
-                        new Claim(ClaimTypes.Email, Email)
+                        new Claim(ClaimTypes.Email, loginDomin.Email)
             };
             var newKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration.GetSection("AppSettings:Token").Value!));
             var creds = new SigningCredentials(newKey, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddDays(1), signingCredentials: creds);
-            var y = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == Email || e.PhoneNumber == PhoneNumber);
+                var y = _dataContextClass.RegisterTable.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiration = token.ValidTo,
-                Employee_Id = y.Uid,
+                Admin_id = y.Uid,
                 Role_Id = y.role_Id,
             });
         }
@@ -222,7 +222,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.UserTypes.FirstOrDefault(i => i.Usertype == userType.Usertype);
             if (data != null)
             {
-                return BadRequest("User type Already Existes...!");
+                return BadRequest("User type Already Exists...!");
             }
             UserType Sd=new UserType();
             Sd.Usertype = userType.Usertype;
@@ -254,7 +254,7 @@ namespace HL.BAL.Implementation
                 string pattern = @"^\d{10}$";
                 if (!Regex.IsMatch(phonenumber, pattern))
                 {
-                    return BadRequest("Invalied Phone number");
+                    return BadRequest("Invalid Phone number");
                 }
                 // Your Account SID and Auth Token from twilio.com/console
                 string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
@@ -287,7 +287,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (!Regex.IsMatch(Email, email))
             {
-                return BadRequest("Invalied Email");
+                return BadRequest("Invalid Email");
             }
             if (details.Email != null)
             {
@@ -338,7 +338,7 @@ namespace HL.BAL.Implementation
             }
             data.OTP = ""; 
             _dataContextClass.SaveChanges();
-            return Ok("Date varified...!");
+            return Ok("Date verified...!");
         }
         //Add PG Admin
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG)
@@ -347,7 +347,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (AdminRegisterPG.Email == "" || !Regex.IsMatch(AdminRegisterPG.Email, email))
             {
-                return BadRequest("Invalied Email");
+                return BadRequest("Invalid Email");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (!Regex.IsMatch(AdminRegisterPG.Password, Passwordpattern))
@@ -361,7 +361,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber && i.PG_Name == AdminRegisterPG.PG_Name);
             if (data != null)
             {
-                return BadRequest("PG Name Already Existes");
+                return BadRequest("PG Name Already Exists");
             }
             if (data == null)
             {
@@ -428,7 +428,7 @@ namespace HL.BAL.Implementation
             }
             else
             {
-                return BadRequest("PG Admin already Submited...!");
+                return BadRequest("PG Admin already Submitted...!");
             }
         }
         public IActionResult ChangePassword(ConfirmPassword confirmPassword)
@@ -449,7 +449,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (SuperAdminRegister.Email == "" || !Regex.IsMatch(SuperAdminRegister.Email, email))
             {
-                return BadRequest("Invalied Email");
+                return BadRequest("Invalid Email");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (!Regex.IsMatch(SuperAdminRegister.Password, Passwordpattern))
@@ -517,7 +517,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(x => x.Email == forgetpassword.Email || x.PhoneNumber == forgetpassword.PhoneNumber);
             if (data == null)
             {
-                return BadRequest("User Not Existes..!");
+                return BadRequest("User Not Exists..!");
             }
             data.Password = forgetpassword.Password;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetpassword.Password);

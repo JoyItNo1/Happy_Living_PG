@@ -28,9 +28,9 @@ namespace Happy_Living.Controllers
 
         [HttpPost]
         [Route("LogIn")]
-        public IActionResult LogIn(string? Email, string? PhoneNumber, string? Password)
+        public IActionResult LogIn(LoginDomin loginDomin)
         {
-            return _login.LogIn(Email, PhoneNumber, Password);
+            return _login.LogIn(loginDomin);
         }
 
         [HttpPost]

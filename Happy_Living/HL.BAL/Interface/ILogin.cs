@@ -12,7 +12,7 @@ namespace HL.BAL.Interface
     public interface ILogin
     {
         public IActionResult Register(RegisterUser registerUser);
-        public IActionResult LogIn(string? Email, string? PhoneNumber, string? Password);
+        public IActionResult LogIn(LoginDomin loginDomin);
         public IActionResult validation(string? Email, string? phonenumber);
         public IActionResult Add_UserType(UserType userType);
         public IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
