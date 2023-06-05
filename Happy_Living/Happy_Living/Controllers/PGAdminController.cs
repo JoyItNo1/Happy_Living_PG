@@ -39,10 +39,10 @@ namespace Happy_Living.Controllers
         }
 
         [HttpPut]
-        [Route("AddPgWorkersUpadate")]
-        public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers)
+        [Route("AddPgWorkersUpdate")]
+        public IActionResult AddPgWorkersUpdate(PgWorkers pgWorkers)
         {
-            return _PGAdmin.AddPgWorkersUpadate(pgWorkers);
+            return _PGAdmin.AddPgWorkersUpdate(pgWorkers);
         }
 
         [HttpGet]
@@ -80,10 +80,10 @@ namespace Happy_Living.Controllers
         }
 
         [HttpGet]
-        [Route("UserSuggetionCmpletInfo")]
-        public IEnumerable<UserSuggetionCmplet> UserSuggetionCmpletInfo()
+        [Route("UserSuggetionCmpliantInfo")]
+        public IEnumerable<UserSuggetionCmpliant> UserSuggetionCmpliantInfo()
         {
-            return _PGAdmin.UserSuggetionCmpletInfo();
+            return _PGAdmin.UserSuggetionCmpliantInfo();
         }
 
         [HttpGet]
@@ -94,36 +94,36 @@ namespace Happy_Living.Controllers
         }
         [HttpGet]
         [Route("DashbordUser")]
-        public IEnumerable<stetussss> DashbordUser(int Id)
+        public IEnumerable<statuss> DashbordUser(int Id)
         {
             return _PGAdmin.DashbordUser(Id);
         }
         [HttpPost]
-        [Route("AddMonthStetus")]
-        public IActionResult AddMonthStetus()
+        [Route("AddMonthStatus")]
+        public IActionResult AddMonthStatus()
         {
-            return _PGAdmin.AddMonthStetus();
+            return _PGAdmin.AddMonthStatus();
         }
 
         [HttpPut]
-        [Route("UpdateMonthStetus")]
-        public IActionResult UpdateMonthStetus(AddStetus addStetus)
+        [Route("UpdateMonthStatus")]
+        public IActionResult UpdateMonthStatus(AddStatus addStatus)
         {
-            return _PGAdmin.UpdateMonthStetus(addStetus);
+            return _PGAdmin.UpdateMonthStatus(addStatus);
         }
 
         [HttpGet]
-        [Route("StetusAll")]
-        public IEnumerable<Stetusinfo> StetusAll(int? Id)
+        [Route("StatusAll")]
+        public IEnumerable<Statusinfo> StatusAll(int? Id)
         {
-            return _PGAdmin.StetusAll(Id);
+            return _PGAdmin.StatusAll(Id);
         }
 
         [HttpPost]
         [Route("SuggestionOrCompliant")]
-        public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass)
+        public IActionResult SuggestionOrCompliant(UserSuggetionCmpliantClass userSuggetionCmpliantClass)
         {
-            return _PGAdmin.SuggestionOrCompliant(userSuggetionCmpletClass);
+            return _PGAdmin.SuggestionOrCompliant(userSuggetionCmpliantClass);
         }
 
         [HttpPost]

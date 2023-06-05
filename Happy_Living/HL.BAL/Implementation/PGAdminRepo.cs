@@ -42,7 +42,7 @@ namespace HL.BAL.Implementation
             PGUser.Email = pGAdminDomain.Email;
             PGUser.PhoneNumber = pGAdminDomain.PhoneNumber;
             PGUser.Bulding_no = pGAdminDomain.Bulding_no;
-            PGUser.Flour_no = pGAdminDomain.Flour_no;
+            PGUser.Floor_no = pGAdminDomain.Floor_no;
             PGUser.Room_no = pGAdminDomain.Room_no;
             PGUser.Password = pGAdminDomain.Password;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(pGAdminDomain.Password);
@@ -68,7 +68,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PhoneNumber == pgWorkers.PhoneNumber);
             if (data != null)
             {
-                return BadRequest("Worker Already existed..!");
+                return BadRequest("Worker Already exists..!");
             }
             PGWorks S = new PGWorks();
 
@@ -79,7 +79,7 @@ namespace HL.BAL.Implementation
             S.Created_date = DateTime.Now.Date;
             _dataContextClass.PGWorks.Add(S);
             _dataContextClass.SaveChanges();    
-            return Ok("Worker Add..!");
+            return Ok("Worker Added..!");
         }
         public IEnumerable<WorkerInfo> workerInfos()
         {
@@ -93,12 +93,12 @@ namespace HL.BAL.Implementation
                        };
             return data.ToList();
         }
-        public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers)
+        public IActionResult AddPgWorkersUpdate(PgWorkers pgWorkers)
         {
             var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PhoneNumber == pgWorkers.PhoneNumber);
             if (data == null)
             {
-                return BadRequest("Worker not existed..!");
+                return BadRequest("Worker does not exist..!");
             }
             data.PGAdminId = pgWorkers.PGAdminId;
             data.Name = pgWorkers.Name;
@@ -112,7 +112,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PGWorks_Id == Id);
             if (data == null)
             {
-                return BadRequest("Worker not existed..!");
+                return BadRequest("Worker does not exist..!");
             }
             _dataContextClass.PGWorks.Remove(data);
             _dataContextClass.SaveChanges();
@@ -122,7 +122,7 @@ namespace HL.BAL.Implementation
         public IEnumerable<PGUserInfo> Userinfo()
         {
             var data = from a in _dataContextClass.PGUserTable
-                       join g in _dataContextClass.Stetus
+                       join g in _dataContextClass.Status
                        on a.PGUser_Id equals g.PGUser_Id
                        select new PGUserInfo
                        {
@@ -132,9 +132,9 @@ namespace HL.BAL.Implementation
                            Gender = a.Gender,
                            Email = a.Email,
                            Bulding_no = a.Bulding_no,
-                           Flour_no = a.Flour_no,
+                           Floor_no = a.Floor_no,
                            Room_no = a.Room_no,
-                           Stetus = g.Stetuss,
+                           Status = g.Statuss,
                        };
             return data.ToList();
         }
@@ -142,19 +142,19 @@ namespace HL.BAL.Implementation
         {
             var data = _dataContextClass.PGUserTable.FirstOrDefault(b => b.Email == pGAdminDomain.Email || b.PhoneNumber == pGAdminDomain.PhoneNumber);
             if (data == null)
-                return BadRequest("User Not Exist...!");
+                return BadRequest("User does not Exist...!");
 
             data.Name = pGAdminDomain.Name;
             data.Gender = pGAdminDomain.Gender;
             data.Email = pGAdminDomain.Email;
             data.PhoneNumber = pGAdminDomain.PhoneNumber;
             data.Bulding_no = pGAdminDomain.Bulding_no;
-            data.Flour_no = pGAdminDomain.Flour_no;
+            data.Floor_no = pGAdminDomain.Floor_no;
             data.Room_no = pGAdminDomain.Room_no;
             var Bds = _dataContextClass.building_blockclas.FirstOrDefault(l => l.blockclas_No == pGAdminDomain.Bulding_no);
             if (Bds != null)
             {
-                var Fds = _dataContextClass.Flore.FirstOrDefault(l => l.Flore_No == pGAdminDomain.Flour_no);
+                var Fds = _dataContextClass.Floor.FirstOrDefault(l => l.Floor_No == pGAdminDomain.Floor_no);
                 if (Fds != null)
                 {
                     var Rds = _dataContextClass.Rooms.FirstOrDefault(l => l.Room_no == pGAdminDomain.Room_no);
@@ -168,7 +168,7 @@ namespace HL.BAL.Implementation
                         }
                         else
                         {
-                            return BadRequest("No bads available..!");
+                            return BadRequest("No beds available..!");
                         }
                     }
                 }
@@ -180,11 +180,11 @@ namespace HL.BAL.Implementation
         {
             var data = _dataContextClass.PGUserTable.FirstOrDefault(b => b.PGUser_Id == Id);
             if (data != null)
-                return BadRequest("User Not Exist...!");
+                return BadRequest("User does not Exist...!");
             var Bds = _dataContextClass.building_blockclas.FirstOrDefault(l => l.blockclas_No == data.Bulding_no);
             if (Bds != null)
             {
-                var Fds = _dataContextClass.Flore.FirstOrDefault(l => l.Flore_No == data.Flour_no);
+                var Fds = _dataContextClass.Floor.FirstOrDefault(l => l.Floor_No == data.Floor_no);
                 if (Fds != null)
                 {
                     var Rds = _dataContextClass.Rooms.FirstOrDefault(l => l.Room_no == data.Room_no);
@@ -207,7 +207,7 @@ namespace HL.BAL.Implementation
         {
             if (addRooms == null)
             {
-                return BadRequest("Please enter some data...!");
+                return BadRequest("Please enter data...!");
             }
             var f = _dataContextClass.building_blockclas.FirstOrDefault(p => p.blockclas_No == addRooms.blockclas_No);
             if (f != null)
@@ -225,33 +225,33 @@ namespace HL.BAL.Implementation
             //int lastsummaryid = _dataContextClass.building_blockclas.Max(item => item.building_blockclas_Id);
 
 
-            foreach (var s in addRooms.Addfloure)
+            foreach (var s in addRooms.Addfloor)
             {
-                var T = new Flore();
+                var T = new Floor();
                 T.block_no = addRooms.blockclas_No;
-                T.Flore_No = s.Flore_No;
+                T.Floor_No = s.Floor_No;
 
-                _dataContextClass.Flore.Add(T);
+                _dataContextClass.Floor.Add(T);
                 _dataContextClass.SaveChanges();
             }
-            int lastsummaryid1 = _dataContextClass.Flore.Max(item => item.Flore_Id);
+            int lastsummaryid1 = _dataContextClass.Floor.Max(item => item.Floor_Id);
 
             foreach (var s in addRooms.RoomsNo)
             {
                 var data = _dataContextClass.Rooms.FirstOrDefault(o => o.Room_no == s.Room_no);
                 if (data != null)
                 {
-                    return BadRequest("Room Already Entered");
+                    return BadRequest("Room Already Added");
                 }
                 var Td = new Rooms();
-                Td.Flore_No = s.Flore_No;
+                Td.Floor_No = s.Floor_No;
                 Td.Room_no = s.Room_no;
                 _dataContextClass.Rooms.Add(Td);
                 _dataContextClass.SaveChanges();
             }
             int lastsummaryid11 = _dataContextClass.Rooms.Max(item => item.Rooms_Id);
 
-            foreach (var s in addRooms.Roomshareing)
+            foreach (var s in addRooms.Roomsharing)
             {
                 var T = new Room_Sharing();
                 T.Rooms_No = s.Rooms_No;
@@ -265,10 +265,10 @@ namespace HL.BAL.Implementation
         public IEnumerable<RoomInfo> RoomInfo()
         {
             var data = from a in _dataContextClass.building_blockclas
-                       join f in _dataContextClass.Flore
+                       join f in _dataContextClass.Floor
                         on a.building_blockclas_Id equals f.block_no
                        join d in _dataContextClass.Rooms
-                       on f.Flore_Id equals d.Flore_No
+                       on f.Floor_Id equals d.Floor_No
                        join g in _dataContextClass.Room_Sharing
                        on d.Room_no equals g.Rooms_No
                        join h in _dataContextClass.PGUserTable
@@ -276,7 +276,7 @@ namespace HL.BAL.Implementation
                        select new RoomInfo
                        {
                            Building_No = a.blockclas_No,
-                           flore_no = f.Flore_No,
+                           floor_no = f.Floor_No,
                            Room_no = d.Room_no,
                            room_sharing = g.room_sharing,
                            Name = h.Name,
@@ -296,60 +296,60 @@ namespace HL.BAL.Implementation
                        };
             return data.ToList();
         }
-        public IEnumerable<UserSuggetionCmplet> UserSuggetionCmpletInfo()
+        public IEnumerable<UserSuggetionCmpliant> UserSuggetionCmpliantInfo()
         {
-            var data = from a in _dataContextClass.UserSuggetionCmplet
-                       select new UserSuggetionCmplet
+            var data = from a in _dataContextClass.UserSuggetionCmpliant
+                       select new UserSuggetionCmpliant
                        {
                            User_Id = a.User_Id,
                            User_name = a.User_name,
                            SuggetionOrCmplet = a.SuggetionOrCmplet,
                            Block_no = a.Block_no,
-                           Flour_no = a.Flour_no,
+                           Floor_no = a.Floor_no,
                            Room_no = a.Room_no,
                            Created_date = a.Created_date,
                        };
             return data.ToList();
         }
-        public IActionResult AddMonthStetus()
+        public IActionResult AddMonthStatus()
         {
             var data = _dataContextClass.PGUserTable.ToList();
             foreach (var s in data)
             {
 
-                var T = new Stetus();
+                var T = new Status();
                 T.PGUser_Id = s.PGUser_Id;
                 T.Name = s.Name;
-                T.Flour_no = s.Flour_no;
+                T.Floor_no = s.Floor_no;
                 T.Room_no = s.Room_no;
                 T.Created_date = DateTime.Now.Date;
                 T.Bulding_no = s.Bulding_no;
                 T.PhoneNumber = s.PhoneNumber;
                 T.Email = s.Email;
-                T.Stetuss = "Pending";
-                _dataContextClass.Stetus.Add(T);
+                T.Statuss = "Pending";
+                _dataContextClass.Status.Add(T);
                 _dataContextClass.SaveChanges();
             }
-            return Ok("Monthly Stetus Added..!");
+            return Ok("Monthly Status Added..!");
         }
-        public IActionResult UpdateMonthStetus(AddStetus addStetus)
+        public IActionResult UpdateMonthStatus(AddStatus addStatus)
         {
-            var data = _dataContextClass.Stetus.FirstOrDefault(o => o.PGUser_Id == addStetus.PGUser_Id);
+            var data = _dataContextClass.Status.FirstOrDefault(o => o.PGUser_Id == addStatus.PGUser_Id);
             if (data == null)
             {
                 return NotFound();
             }
-            data.Stetuss = addStetus.Stetus;
+            data.Statuss = addStatus.Status;
             _dataContextClass.SaveChanges();
-            return Ok("Recored Updated...!");
+            return Ok("Record Updated...!");
         }
-        public IEnumerable<stetussss> DashbordUser(int Id)
+        public IEnumerable<statuss> DashbordUser(int Id)
         {
-            var data = from a in _dataContextClass.Stetus
+            var data = from a in _dataContextClass.Status
                        where (a.PGUser_Id == Id)
-                       select new stetussss
+                       select new statuss
                        {
-                           stetus = a.Stetuss
+                           status = a.Statuss
                        };
             return data.ToList();
         }
@@ -371,34 +371,34 @@ namespace HL.BAL.Implementation
             _dataContextClass.SaveChanges();
             return Ok("Payment Details Sent...!");
         }
-        public IEnumerable<Stetusinfo> StetusAll(int? Id)
+        public IEnumerable<Statusinfo> StatusAll(int? Id)
         {
-            var data = from a in _dataContextClass.Stetus
+            var data = from a in _dataContextClass.Status
                        join f in _dataContextClass.PGUserTable
                         on a.PGUser_Id equals f.PGUser_Id
                        where (f.PGUser_Id == Id)
-                       select new Stetusinfo
+                       select new Statusinfo
                        {
                            Date = a.Created_date,
-                           Stetus = a.Stetuss
+                           Status = a.Statuss
                        };
             return data.ToList();
         }
-        public IActionResult SuggestionOrCompliant(UserSuggetionCmpletClass userSuggetionCmpletClass)
+        public IActionResult SuggestionOrCompliant(UserSuggetionCmpliantClass userSuggetionCmpletClass)
         {
             if (userSuggetionCmpletClass == null)
             {
                 return BadRequest("Enter Data...!");
             }
-            UserSuggetionCmplet user = new UserSuggetionCmplet();
+            UserSuggetionCmpliant user = new UserSuggetionCmpliant();
             user.User_Id = userSuggetionCmpletClass.User_Id;
             user.User_name = userSuggetionCmpletClass.User_name;
-            user.SuggetionOrCmplet = userSuggetionCmpletClass.SuggetionOrCmplet;
+            user.SuggetionOrCmplet = userSuggetionCmpletClass.SuggetionOrCmpliant;
             user.Block_no = userSuggetionCmpletClass.Block_no;
-            user.Flour_no = userSuggetionCmpletClass.Flour_no;
+            user.Floor_no = userSuggetionCmpletClass.Floor_no;
             user.Room_no = userSuggetionCmpletClass.Room_no;
             user.Created_date = DateTime.Now;
-            _dataContextClass.UserSuggetionCmplet.Add(user);
+            _dataContextClass.UserSuggetionCmpliant.Add(user);
             _dataContextClass.SaveChanges();
             return Ok("Message Sent...!");
         }

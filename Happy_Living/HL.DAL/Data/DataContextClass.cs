@@ -13,7 +13,7 @@ namespace HL.DAL.Data
         public DataContextClass(DbContextOptions<DataContextClass> options) : base(options) { }
         public DbSet<RegisterClass> RegisterTable { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
-        public DbSet<PGsheringType> PGsheringType { get; set; }
+        public DbSet<PGsharingType> PGsheringType { get; set; }
         public DbSet<OTPClass> OTPClass { get; set; }
         public DbSet<PGTypes> PGTypes { get; set; }
         public DbSet<PGAdminRegister> PGAdminRegisters { get; set; }
@@ -23,11 +23,11 @@ namespace HL.DAL.Data
         public DbSet<PGUser> PGUserTable { get; set; }
         public DbSet<PGWorks> PGWorks { get; set; }
         public DbSet<building_blockclas> building_blockclas { get; set; }
-        public DbSet<Flore> Flore { get; set; }
+        public DbSet<Floor> Floor { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<Room_Sharing> Room_Sharing { get; set; }
-        public DbSet<UserSuggetionCmplet> UserSuggetionCmplet { get; set; }
-        public DbSet<Stetus> Stetus { get; set; }
+        public DbSet<UserSuggetionCmpliant> UserSuggetionCmpliant { get; set; }
+        public DbSet<Status> Status { get; set; }
         public DbSet<PaymentImage> PaymentImage { get; set; }
     }
 }

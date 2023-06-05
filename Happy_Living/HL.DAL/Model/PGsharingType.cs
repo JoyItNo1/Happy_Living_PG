@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace HL.DAL.Model
 {
-    public class PGsheringType
+    public class PGsharingType
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Sheretype_Id { get; set; }
+        public int Sharetype_Id { get; set; }
 
         [ForeignKey("PGAdmin_Id")]
         public int? PGAdminId { get; set; }
