@@ -21,7 +21,7 @@ namespace HL.DAL.Model
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public int? Bulding_no { get; set;}
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
         public string? Password { get; set; }
         public string? HashPassword { get; set; }

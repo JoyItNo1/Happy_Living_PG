@@ -37,7 +37,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (registerUser.Email == "" || !Regex.IsMatch(registerUser.Email, email))
             {
-                return BadRequest("Invalid Email");
+                return BadRequest("Invalied Email");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (!Regex.IsMatch(registerUser.Password, Passwordpattern))
@@ -222,7 +222,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.UserTypes.FirstOrDefault(i => i.Usertype == userType.Usertype);
             if (data != null)
             {
-                return BadRequest("User type Already Exists...!");
+                return BadRequest("User type Already Existes...!");
             }
             UserType Sd=new UserType();
             Sd.Usertype = userType.Usertype;
@@ -254,7 +254,7 @@ namespace HL.BAL.Implementation
                 string pattern = @"^\d{10}$";
                 if (!Regex.IsMatch(phonenumber, pattern))
                 {
-                    return BadRequest("Invalid Phone number");
+                    return BadRequest("Invalied Phone number");
                 }
                 // Your Account SID and Auth Token from twilio.com/console
                 string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
@@ -265,7 +265,7 @@ namespace HL.BAL.Implementation
 
                 // Send an SMS message
                 var message1 = MessageResource.Create(
-                    body: $"Your otp is:{otp} Do not shere with anyone...!",
+                    body: $"Your otp is:{otp} Do not shere with any one...!",
                     from: new Twilio.Types.PhoneNumber("+12707173050"), // Twilio phone number
                     to: new Twilio.Types.PhoneNumber("+916363112696") // recipient's phone number
                 );
@@ -338,7 +338,7 @@ namespace HL.BAL.Implementation
             }
             data.OTP = ""; 
             _dataContextClass.SaveChanges();
-            return Ok("Date verified...!");
+            return Ok("Date varified...!");
         }
         //Add PG Admin
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG)
@@ -347,7 +347,7 @@ namespace HL.BAL.Implementation
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (AdminRegisterPG.Email == "" || !Regex.IsMatch(AdminRegisterPG.Email, email))
             {
-                return BadRequest("Invalid Email");
+                return BadRequest("Invalied Email");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (!Regex.IsMatch(AdminRegisterPG.Password, Passwordpattern))
@@ -356,12 +356,12 @@ namespace HL.BAL.Implementation
             }
             if (AdminRegisterPG.Password != AdminRegisterPG.Confirmpassword)
             {
-                return BadRequest("Password does not Match");
+                return BadRequest("Password is not Matching");
             }
             var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber && i.PG_Name == AdminRegisterPG.PG_Name);
             if (data != null)
             {
-                return BadRequest("PG Name Already Exists");
+                return BadRequest("PG Name Already Existes");
             }
             if (data == null)
             {
@@ -396,7 +396,7 @@ namespace HL.BAL.Implementation
 
                 foreach (var s in AdminRegisterPG.PgShering)
                 {
-                    var T = new PGsharingType();
+                    var T = new PGsheringType();
                     T.SharingType = s.SharingType;
                     T.Price = s.Price;
                     T.PGAdminId = lastsummaryid;
@@ -428,7 +428,7 @@ namespace HL.BAL.Implementation
             }
             else
             {
-                return BadRequest("PG Admin already Submitted...!");
+                return BadRequest("PG Admin already Submited...!");
             }
         }
         public IActionResult ChangePassword(ConfirmPassword confirmPassword)
@@ -517,7 +517,7 @@ namespace HL.BAL.Implementation
             var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(x => x.Email == forgetpassword.Email || x.PhoneNumber == forgetpassword.PhoneNumber);
             if (data == null)
             {
-                return BadRequest("User Not Exists..!");
+                return BadRequest("User Not Existes..!");
             }
             data.Password = forgetpassword.Password;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetpassword.Password);

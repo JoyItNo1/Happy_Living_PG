@@ -17,7 +17,7 @@ namespace Happy_Living.Controllers
         }
 
         [HttpGet]
-        [Route("DashBoard")]
+        [Route("DashBord")]
         public IActionResult GetByDashboard()
         {
             return _superAdmin.GetByDashboard();

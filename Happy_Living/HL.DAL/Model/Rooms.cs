@@ -14,7 +14,7 @@ namespace HL.DAL.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Rooms_Id { get; set; }
         [ForeignKey("PGAdmin_Id")]
-        public int? Floor_No { get; set; }
+        public int? Flore_No { get; set; }
 
         public int? Room_no { get; set;}
     }

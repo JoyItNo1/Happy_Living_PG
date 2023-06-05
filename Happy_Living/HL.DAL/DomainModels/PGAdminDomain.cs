@@ -16,7 +16,7 @@ namespace HL.DAL.DomainModels
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public int? Bulding_no { get; set; }
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
         public string? Password { get; set; }
         public int role_Id { get; set; }
@@ -43,9 +43,9 @@ namespace HL.DAL.DomainModels
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public int? Bulding_no { get; set; }
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
-        public string? Status { get; set; }
+        public string? Stetus { get; set; }
     }
     public class PGUserUpdate
     {
@@ -54,27 +54,27 @@ namespace HL.DAL.DomainModels
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public int? Bulding_no { get; set; }
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
     }
     public class AddRooms
     {
         public int? blockclas_No { get; set; }
-        public List<Addfloor>? Addfloor { get; set; }
+        public List<Addfloure>? Addfloure { get; set; }
         public List<RoomsNo>? RoomsNo { get; set; }
-        public List<Roomsharing>? Roomsharing { get; set; }
+        public List<Roomshareing>? Roomshareing { get; set; }
     }
-    public class Addfloor
+    public class Addfloure
     {
         public int? block_no { get; set; }
-        public int? Floor_No { get; set; }
+        public int? Flore_No { get; set; }
     }
     public class RoomsNo
     {
-        public int? Floor_No { get; set; }
+        public int? Flore_No { get; set; }
         public int? Room_no { get; set; }
     }
-    public class Roomsharing
+    public class Roomshareing
     {
         public int? Rooms_No { get; set; }
         public String? Email { get; set; }
@@ -83,7 +83,7 @@ namespace HL.DAL.DomainModels
     public class RoomInfo
     {
         public int? Building_No { get; set; }
-        public int? floor_no { get; set; }
+        public int? flore_no { get; set; }
         public int? Room_no { get; set; }
         public int? room_sharing { get; set; }
         public string? Name { get; set; }
@@ -96,38 +96,43 @@ namespace HL.DAL.DomainModels
         public string? PhoneNumber { get; set; }
         
     }
-    public class AddStatus
+    public class AddFoodInfo
+    {
+        public string? Food_Name { get; set; }
+        public string? Day { get; set; }
+    }
+    public class AddStetus
     {
         public int PGUser_Id { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public int? Bulding_no { get; set; }
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
-        public string? Status { get; set; }
+        public string? Stetus { get; set; }
     }
-    public class statuss
+    public class stetussss
     {
-        public string? status { get; set; }
+        public string? stetus { get; set; }
     }
     public class Payment
     {
         public string UserId { get; set; }
         public string? PaymentsImage { get; set; }
     }
-    public class Statusinfo
+    public class Stetusinfo
     {
         public DateTime? Date { get; set; }
-        public string? Status { get; set;}
+        public string? Stetus { get; set;}
     }
-    public class UserSuggetionCmpliantClass
+    public class UserSuggetionCmpletClass
     {
         public int? User_Id { get; set; }
         public string? User_name { get; set; }
-        public string? SuggetionOrCmpliant { get; set; }
+        public string? SuggetionOrCmplet { get; set; }
         public int? Block_no { get; set; }
-        public int? Floor_no { get; set; }
+        public int? Flour_no { get; set; }
         public int? Room_no { get; set; }
     }
 }
