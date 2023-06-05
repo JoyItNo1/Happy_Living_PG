@@ -50,21 +50,31 @@ namespace HL.BAL.Implementation
             PGUser.Role_Id = 4;
             PGUser.Created_date = DateTime.Now.Date;
             var RSds = _dataContextClass.Room_Sharing.FirstOrDefault(l => l.Rooms_No == pGAdminDomain.Room_no && l.Email != pGAdminDomain.Email);
-            var RSDSs = _dataContextClass.Room_Sharing.Count(l => l.Rooms_No == pGAdminDomain.Room_no);
-            if (RSds != null && RSds.room_sharing >= RSDSs)
-            {
-                var T = new Room_Sharing();
-                T.Rooms_No = pGAdminDomain.Room_no;
-                T.Email = pGAdminDomain.Email;
-                T.room_sharing = RSds.room_sharing;
-                _dataContextClass.Room_Sharing.Add(T);
-                _dataContextClass.SaveChanges();
 
-            }
-            else
+            if (RSds != null)
             {
-                RSds.Email = PGUser.Email;
-                _dataContextClass.SaveChanges();
+                if (RSds.Email == "")
+                {
+                    RSds.Email = pGAdminDomain.Email;
+                    _dataContextClass.SaveChanges();
+                }
+                else
+                {
+                    var RSDSs = _dataContextClass.Room_Sharing.Count(l => l.Rooms_No == pGAdminDomain.Room_no);
+                    if(RSds.room_sharing != RSDSs)
+                    {
+                        var T = new Room_Sharing();
+                        T.Rooms_No = pGAdminDomain.Room_no;
+                        T.Email = pGAdminDomain.Email;
+                        T.room_sharing = RSds.room_sharing;
+                        _dataContextClass.Room_Sharing.Add(T);
+                        _dataContextClass.SaveChanges();
+                    }
+                    else
+                    {
+                        return BadRequest("Room Already Filled");
+                    }
+                }
             }
             _dataContextClass.PGUserTable.Add(PGUser);
             _dataContextClass.SaveChanges();
