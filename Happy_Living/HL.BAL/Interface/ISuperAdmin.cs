@@ -19,5 +19,6 @@ namespace HL.BAL.Interface
         public IEnumerable<SuperAdminInfo> SuperAdminInfo(int? Id);
         public IActionResult AddPGToUser(SelectedPgForUser selectedPGUser);
         public IEnumerable<Userinfo> UserInfo(int? Id);
+        public IActionResult ActiveInactive(int[]? Id, bool? IS_Active);
     }
 }

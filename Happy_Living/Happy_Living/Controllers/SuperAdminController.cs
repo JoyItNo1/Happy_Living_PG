@@ -71,5 +71,11 @@ namespace Happy_Living.Controllers
         {
             return _superAdmin.UserInfo(Id);
         }
+        [HttpPut]
+        [Route("ActiveInactive")]
+        public IActionResult ActiveInactive(int[]? Id, bool? IS_Active)
+        {
+            return _superAdmin.ActiveInactive(Id, IS_Active);
+        }
     }
 }

@@ -481,7 +481,6 @@ namespace HL.BAL.Implementation
             data.Hashpassword = passwordHash;
             _dataContextClass.SaveChanges();
             return Ok("Password Updated..!");
-
         }
     }
   

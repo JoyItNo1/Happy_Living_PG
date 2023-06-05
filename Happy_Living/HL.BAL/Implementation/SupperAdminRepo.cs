@@ -154,5 +154,33 @@ namespace HL.BAL.Implementation
                        };
             return data.ToList();
         }
+        public IActionResult ActiveInactive(int[]? Id,bool? IS_Active)
+        {
+            try
+            {
+                var data = _dataContextClass.PGAdminRegisters.Where(p => Id.Contains(p.PGAdmin_Id)); ;
+                var newValues = new { Is_Active = false };
+                if (data != null && data.Any() && IS_Active==true)
+                {
+                    foreach (var ToUpdate1 in data)
+                    {
+                        ToUpdate1.Is_Auth = newValues.Is_Active;
+                    }
+                }
+                if (data != null && data.Any() && IS_Active == false)
+                {
+                    foreach (var ToUpdate1 in data)
+                    {
+                        ToUpdate1.Is_Auth = newValues.Is_Active;
+                    }
+                }
+                _dataContextClass.SaveChanges();
+                return Ok("Updated Success");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
