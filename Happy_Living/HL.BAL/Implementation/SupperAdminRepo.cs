@@ -154,20 +154,21 @@ namespace HL.BAL.Implementation
                        };
             return data.ToList();
         }
-        public IActionResult ActiveInactive(int[]? Id,bool? IS_Active)
+        public IActionResult ActiveInactive(UserActiveStetus userActiveStetus)
         {
             try
             {
-                var data = _dataContextClass.PGAdminRegisters.Where(p => Id.Contains(p.PGAdmin_Id)); ;
+                var data = _dataContextClass.PGAdminRegisters.Where(p => userActiveStetus.Id.Contains(p.PGAdmin_Id)); ;
                 var newValues = new { Is_Active = false };
-                if (data != null && data.Any() && IS_Active==true)
+                var newValues1 = new { Is_Active = true };
+                if (data != null && data.Any() && userActiveStetus.IS_Active == true)
                 {
                     foreach (var ToUpdate1 in data)
                     {
-                        ToUpdate1.Is_Auth = newValues.Is_Active;
+                        ToUpdate1.Is_Auth = newValues1.Is_Active;
                     }
                 }
-                if (data != null && data.Any() && IS_Active == false)
+                if (data != null && data.Any() && userActiveStetus.IS_Active == false)
                 {
                     foreach (var ToUpdate1 in data)
                     {

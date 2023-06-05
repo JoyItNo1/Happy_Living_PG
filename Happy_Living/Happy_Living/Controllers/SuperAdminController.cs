@@ -73,9 +73,9 @@ namespace Happy_Living.Controllers
         }
         [HttpPut]
         [Route("ActiveInactive")]
-        public IActionResult ActiveInactive(int[]? Id, bool? IS_Active)
+        public IActionResult ActiveInactive(UserActiveStetus userActiveStetus)
         {
-            return _superAdmin.ActiveInactive(Id, IS_Active);
+            return _superAdmin.ActiveInactive(userActiveStetus);
         }
     }
 }

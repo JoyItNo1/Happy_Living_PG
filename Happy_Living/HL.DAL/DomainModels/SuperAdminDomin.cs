@@ -67,4 +67,10 @@ namespace HL.DAL.DomainModels
         public string? PhoneNumber { get; set; }
     }
 
+    public class UserActiveStetus
+    {
+        public int[]? Id { get; set;}
+        public bool? IS_Active { get; set; }
+    }
+
 }
