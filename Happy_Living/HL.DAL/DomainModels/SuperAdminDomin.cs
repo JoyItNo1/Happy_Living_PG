@@ -14,6 +14,8 @@ namespace HL.DAL.DomainModels
     }
     public class PGAdminData
     {
+        public bool? Is_Auth { get; set; }
+        public int PGAdmin_Id { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }

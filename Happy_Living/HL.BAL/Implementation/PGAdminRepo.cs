@@ -112,7 +112,7 @@ namespace HL.BAL.Implementation
         }
         public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers)
         {
-            var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PhoneNumber == pgWorkers.PhoneNumber);
+            var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PGAdminId == pgWorkers.PGAdminId);
             if (data == null)
             {
                 return BadRequest("Worker not existed..!");

@@ -39,6 +39,8 @@ namespace HL.BAL.Implementation
         var data = from a in _dataContextClass.PGAdminRegisters
                        select new PGAdminData
                        {
+                           Is_Auth = a.Is_Auth,
+                           PGAdmin_Id =a.PGAdmin_Id,
                            Name = a.Name,
                            Email = a.Email,
                            PhoneNumber = a.PhoneNumber,
