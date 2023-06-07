@@ -31,9 +31,12 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("No Rooms Available..!");
             }
-            var data = _dataContextClass.PGUserTable.FirstOrDefault(b => b.Email== pGAdminDomain.Email ||b.PhoneNumber == pGAdminDomain.PhoneNumber);
-            if (data != null)
-                return BadRequest("User Already Added...!");
+            var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == pGAdminDomain.Email || i.PhoneNumber == pGAdminDomain.PhoneNumber);
+            var data = _dataContextClass.SuperAdminClass.FirstOrDefault(i => i.Email == pGAdminDomain.Email && i.PhoneNumber == pGAdminDomain.PhoneNumber);
+            var data1 = _dataContextClass.PGUserTable.FirstOrDefault(i => i.Email == pGAdminDomain.Email && i.PhoneNumber == pGAdminDomain.PhoneNumber);
+            var data11 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == pGAdminDomain.Email && i.PhoneNumber == pGAdminDomain.PhoneNumber);
+            if (Details != null || data != null || data1 != null || data11 != null)
+                return BadRequest("User Mail or phone number Already Added enter other data...!");
            
             PGUser PGUser = new PGUser();
             PGUser.PGAdminId = pGAdminDomain.PGAdminId;

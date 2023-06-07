@@ -50,8 +50,11 @@ namespace HL.BAL.Implementation
             }
 
             var Details =  _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == registerUser.Email || i.PhoneNumber == registerUser.PhoneNumber);
-            if(Details != null )
-                return BadRequest("Data Already exists");
+            var data = _dataContextClass.SuperAdminClass.FirstOrDefault(i => i.Email == registerUser.Email && i.PhoneNumber == registerUser.PhoneNumber);
+            var data1 = _dataContextClass.PGUserTable.FirstOrDefault(i => i.Email == registerUser.Email && i.PhoneNumber == registerUser.PhoneNumber);
+            var data11 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == registerUser.Email && i.PhoneNumber == registerUser.PhoneNumber);
+            if (Details!=null || data != null || data1 != null || data11 != null)
+                return BadRequest("User Mail or phone number Already Added enter other data...!");
             RegisterClass reg =new RegisterClass();
 
             reg.Name = registerUser.Name;
@@ -328,10 +331,13 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("Password is not Matching");
             }
-            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber && i.PG_Name == AdminRegisterPG.PG_Name);
-            if (data != null)
+            var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == AdminRegisterPG.Email || i.PhoneNumber == AdminRegisterPG.PhoneNumber);
+            var data = _dataContextClass.SuperAdminClass.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
+            var data1 = _dataContextClass.PGUserTable.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
+            var data11 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == AdminRegisterPG.Email && i.PhoneNumber == AdminRegisterPG.PhoneNumber);
+            if (Details != null || data != null || data1 != null || data11 != null)
             {
-                return BadRequest("PG Name Already Exists");
+                return BadRequest("User Mail or phone number Already Added enter other data...!");
             }
             if (data == null)
             {
@@ -430,10 +436,13 @@ namespace HL.BAL.Implementation
             {
                 return BadRequest("Password is not Matching");
             }
+            var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == SuperAdminRegister.Email || i.PhoneNumber == SuperAdminRegister.PhoneNumber);
             var data = _dataContextClass.SuperAdminClass.FirstOrDefault(i => i.Email == SuperAdminRegister.Email && i.PhoneNumber == SuperAdminRegister.PhoneNumber);
-            if (data != null)
+            var data1 = _dataContextClass.PGUserTable.FirstOrDefault(i => i.Email == SuperAdminRegister.Email && i.PhoneNumber == SuperAdminRegister.PhoneNumber);
+            var data11 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == SuperAdminRegister.Email && i.PhoneNumber == SuperAdminRegister.PhoneNumber);
+            if (Details != null || data != null || data1 !=null || data11 != null)
             {
-                return BadRequest("User Already Exists..!");
+                return BadRequest("User Mail or phone number Already Added enter other data...!");
             }
             if (data == null)
             {
