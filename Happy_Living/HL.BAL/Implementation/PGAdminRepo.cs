@@ -82,7 +82,7 @@ namespace HL.BAL.Implementation
         }
         public IActionResult AddPgWorkers(PgWorkers pgWorkers)
         {
-            var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PhoneNumber == pgWorkers.PhoneNumber);
+            var data = _dataContextClass.PGAdminRegisters.FirstOrDefault(k => k.PhoneNumber == pgWorkers.PhoneNumber);
             if (data != null)
             {
                 return BadRequest("Worker Already existed..!");
@@ -112,7 +112,7 @@ namespace HL.BAL.Implementation
         }
         public IActionResult AddPgWorkersUpadate(PgWorkers pgWorkers)
         {
-            var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PGAdminId == pgWorkers.PGAdminId);
+            var data = _dataContextClass.PGWorks.FirstOrDefault(k => k.PGAdminId == pgWorkers.PGAdminId && k.PhoneNumber == pgWorkers.PhoneNumber);
             if (data == null)
             {
                 return BadRequest("Worker not existed..!");
