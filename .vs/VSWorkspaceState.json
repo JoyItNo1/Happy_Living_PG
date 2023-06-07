@@ -8,6 +8,6 @@
     "\\Happy_Living\\HL.BAL\\Implementation",
     "\\Happy_Living\\HL.DAL"
   ],
-  "SelectedNode": "\\Happy_Living\\Happy_Living\\Controllers\\PGAdminController.cs",
+  "SelectedNode": "\\Happy_Living\\HL.BAL\\Implementation\\PGAdminRepo.cs",
   "PreviewInSolutionExplorer": false
 }

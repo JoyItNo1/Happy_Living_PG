@@ -153,12 +153,12 @@ namespace HL.BAL.Implementation
                 _configuration.GetSection("AppSettings:Token").Value!));
                 var creds1235 = new SigningCredentials(newKey1235, SecurityAlgorithms.HmacSha512Signature);
                 var token1235 = new JwtSecurityToken(claims: claims1235, expires: DateTime.Now.AddDays(1), signingCredentials: creds1235);
-                var y1235 = _dataContextClass.PGAdminRegisters.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
+                var y1235 = _dataContextClass.PGUserTable.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token1235),
                     expiration = token1235.ValidTo,
-                    Admin_Id = y1235.PGAdmin_Id,
+                    Admin_Id = y1235.PGUser_Id,
                     Role_Id = y1235.Role_Id,
                 });
             }
