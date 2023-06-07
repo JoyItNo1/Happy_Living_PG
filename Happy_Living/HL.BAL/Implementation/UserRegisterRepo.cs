@@ -82,7 +82,7 @@ namespace HL.BAL.Implementation
             var Details = _dataContextClass.RegisterTable.FirstOrDefault(i => i.Email == loginDomin.Email);//|| i.PhoneNumber == PhoneNumber);
             if (Details == null)
             {
-                var Details121 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == loginDomin.Email);// i.PhoneNumber == PhoneNumber);
+                var Details121 = _dataContextClass.PGUserTable.FirstOrDefault(i => i.Email == loginDomin.Email);// i.PhoneNumber == PhoneNumber);
                 if (Details121 == null)
                 {
                     var Details1211 = _dataContextClass.PGAdminRegisters.FirstOrDefault(i => i.Email == loginDomin.Email);// i.PhoneNumber == PhoneNumber);
@@ -114,40 +114,53 @@ namespace HL.BAL.Implementation
                             Role_Id = y12351.Role_Id,
                         });
                     }
-                }
-                else 
-                { 
-                    string storedPasswordHash1211 = Details121.Hashpassword;
-                    bool isPasswordCorrect1211 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash1211);
-                    if (!isPasswordCorrect1211)
+                    string storedPasswordHash1213 = Details1211.Hashpassword;
+                    bool isPasswordCorrect12113 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash1213);
+                    if (!isPasswordCorrect12113)
                     {
                         return NotFound("Password Not Found");
                     }
-                   
-                    List<Claim> claims1235 = new List<Claim>
+
+                    List<Claim> claims12353 = new List<Claim>
                     {
                         new Claim(ClaimTypes.Email, loginDomin.Email)
                     };
-                    var newKey1235 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                    var newKey12353 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                     _configuration.GetSection("AppSettings:Token").Value!));
-                    var creds1235 = new SigningCredentials(newKey1235, SecurityAlgorithms.HmacSha512Signature);
-                    var token1235 = new JwtSecurityToken(claims: claims1235, expires: DateTime.Now.AddDays(1), signingCredentials: creds1235);
-                    var y1235 = _dataContextClass.PGAdminRegisters.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
+                    var creds12353 = new SigningCredentials(newKey12353, SecurityAlgorithms.HmacSha512Signature);
+                    var token12353 = new JwtSecurityToken(claims: claims12353, expires: DateTime.Now.AddDays(1), signingCredentials: creds12353);
+                    var y12353 = _dataContextClass.PGAdminRegisters.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
                     return Ok(new
                     {
-                        token = new JwtSecurityTokenHandler().WriteToken(token1235),
-                        expiration = token1235.ValidTo,
-                        Admin_Id = y1235.PGAdmin_Id,
-                        Role_Id = y1235.Role_Id,
+                        token = new JwtSecurityTokenHandler().WriteToken(token12353),
+                        expiration = token12353.ValidTo,
+                        Admin_Id = y12353.PGAdmin_Id,
+                        Role_Id = y12353.Role_Id,
                     });
                 }
-
-                string storedPasswordHash12 = Details121.Hashpassword;
-                bool isPasswordCorrect12 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash12);
-                if (!isPasswordCorrect12)
+                string storedPasswordHash1211 = Details121.HashPassword;
+                bool isPasswordCorrect1211 = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash1211);
+                if (!isPasswordCorrect1211)
                 {
                     return NotFound("Password Not Found");
                 }
+
+                List<Claim> claims1235 = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Email, loginDomin.Email)
+                    };
+                var newKey1235 = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value!));
+                var creds1235 = new SigningCredentials(newKey1235, SecurityAlgorithms.HmacSha512Signature);
+                var token1235 = new JwtSecurityToken(claims: claims1235, expires: DateTime.Now.AddDays(1), signingCredentials: creds1235);
+                var y1235 = _dataContextClass.PGAdminRegisters.FirstOrDefault(e => e.Email == loginDomin.Email);// || e.PhoneNumber == PhoneNumber);
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token1235),
+                    expiration = token1235.ValidTo,
+                    Admin_Id = y1235.PGAdmin_Id,
+                    Role_Id = y1235.Role_Id,
+                });
             }
             string storedPasswordHash = Details.HashPassword;
             bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(loginDomin.Password, storedPasswordHash);
