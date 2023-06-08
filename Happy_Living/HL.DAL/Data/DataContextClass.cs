@@ -12,7 +12,6 @@ namespace HL.DAL.Data
     {
         public DataContextClass(DbContextOptions<DataContextClass> options) : base(options) { }
         public DbSet<RegisterClass> RegisterTable { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
         public DbSet<PGsheringType> PGsheringType { get; set; }
         public DbSet<OTPClass> OTPClass { get; set; }
         public DbSet<PGTypes> PGTypes { get; set; }

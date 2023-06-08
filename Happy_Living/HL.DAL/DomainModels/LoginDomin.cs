@@ -13,7 +13,6 @@ namespace HL.DAL.DomainModels
         public string? Gender { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Usertype { get; set; }
         public string? Password { get; set; }
         public string? ComPassword { get; set; }
     }
@@ -25,7 +24,6 @@ namespace HL.DAL.DomainModels
         public string? Password { get; set; }
         public string? Confirmpassword { get; set; }
         public string? Select_State { get; set; }
-        public string? User_type { get; set; }
         public string? Select_City { get; set; }
         public string? Select_Area { get; set; }
         public string? PG_Name { get; set; }

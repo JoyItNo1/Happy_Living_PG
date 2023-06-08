@@ -531,22 +531,6 @@ namespace HL.DAL.Migrations
 
                     b.ToTable("UserSuggetionCmplet");
                 });
-
-            modelBuilder.Entity("HL.DAL.Model.UserType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Usertype")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserTypes");
-                });
 #pragma warning restore 612, 618
         }
     }

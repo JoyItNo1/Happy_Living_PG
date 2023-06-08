@@ -56,13 +56,6 @@ namespace Happy_Living.Controllers
         }
 
         [HttpPost]
-        [Route("Add_UserType")]
-        public IActionResult Add_UserType(UserType userType)
-        {
-            return _login.Add_UserType(userType);
-        }
-
-        [HttpPost]
         [Route("PGAdminRegistration")]
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG)
         {

@@ -14,7 +14,6 @@ namespace HL.BAL.Interface
         public IActionResult Register(RegisterUser registerUser);
         public IActionResult LogIn(LoginDomin loginDomin);
         public IActionResult validation(string? Email, string? phonenumber);
-        public IActionResult Add_UserType(UserType userType);
         public IActionResult VerifyOTP(string? email, string? PhoneNumber, string otp);
         public IActionResult PGAdminRegistration(AdminRegisterPG AdminRegisterPG);
         public IActionResult ChangePassword(ConfirmPassword confirmPassword);

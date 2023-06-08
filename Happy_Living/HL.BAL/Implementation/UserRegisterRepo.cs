@@ -64,11 +64,7 @@ namespace HL.BAL.Implementation
             reg.Password = registerUser.Password;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
             reg.HashPassword = passwordHash;
-            var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == registerUser.Usertype);
-            if (Role.Usertype.ToLower() == "User")
-            {
                 reg.role_Id = 2;
-            }
             _dataContextClass.RegisterTable.Add(reg);
              _dataContextClass.SaveChanges();
             return Ok("User Registered..!");
@@ -184,20 +180,6 @@ namespace HL.BAL.Implementation
                 Admin_Id = y.Uid,
                 Role_Id = y.role_Id,
             });
-        }
-        //Add User type like user and Pg Admin
-        public IActionResult Add_UserType(UserType userType)
-        {
-            var data = _dataContextClass.UserTypes.FirstOrDefault(i => i.Usertype == userType.Usertype);
-            if (data != null)
-            {
-                return BadRequest("User type Already Exists...!");
-            }
-            UserType Sd=new UserType();
-            Sd.Usertype = userType.Usertype;
-            _dataContextClass.UserTypes.Add(Sd);
-            _dataContextClass.SaveChanges();
-            return Ok("User Type Added..!");
         }
         //Verify Email and Number
         public IActionResult validation(string? Email, string? phonenumber)
@@ -352,11 +334,7 @@ namespace HL.BAL.Implementation
                 TS.Select_Area = AdminRegisterPG.Select_Area;
                 TS.Select_City = AdminRegisterPG.Select_City;
                 TS.Select_State = AdminRegisterPG.Select_State;
-                var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == AdminRegisterPG.User_type);
-                if (Role.Usertype.ToLower() == "pgadmin")
-                {
                     TS.Role_Id = 3;
-                }
                 _dataContextClass.PGAdminRegisters.Add(TS);
                 _dataContextClass.SaveChanges();
                 int lastsummaryid = _dataContextClass.PGAdminRegisters.Max(item => item.PGAdmin_Id);
