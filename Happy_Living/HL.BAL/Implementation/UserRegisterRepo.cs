@@ -69,10 +69,6 @@ namespace HL.BAL.Implementation
             {
                 reg.role_Id = 2;
             }
-            else
-            {
-                reg.role_Id = 1;
-            }
             _dataContextClass.RegisterTable.Add(reg);
              _dataContextClass.SaveChanges();
             return Ok("User Registered..!");
@@ -359,11 +355,7 @@ namespace HL.BAL.Implementation
                 var Role = _dataContextClass.UserTypes.FirstOrDefault(e => e.Usertype == AdminRegisterPG.User_type);
                 if (Role.Usertype.ToLower() == "pgadmin")
                 {
-                    TS.Role_Id = 1;
-                }
-                else
-                {
-                    TS.Role_Id = 2;
+                    TS.Role_Id = 3;
                 }
                 _dataContextClass.PGAdminRegisters.Add(TS);
                 _dataContextClass.SaveChanges();
@@ -454,7 +446,7 @@ namespace HL.BAL.Implementation
                 TS.Password = SuperAdminRegister.Password;
                 string passwordHash = BCrypt.Net.BCrypt.HashPassword(SuperAdminRegister.Password);
                 TS.Hashpassword = passwordHash;
-                TS.Role_Id = 3;
+                TS.Role_Id = 1;
                 _dataContextClass.SuperAdminClass.Add(TS);
                 _dataContextClass.SaveChanges();
             }
